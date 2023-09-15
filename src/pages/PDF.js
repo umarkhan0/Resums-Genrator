@@ -17,8 +17,12 @@ const styles = StyleSheet.create({
 const PDFDocument = () => (
   <Document>
     <Page size="A4" style={styles.page}>
+      <div className>
       <Text style={styles.text}>MY name is umar</Text>
-      <Image src="path_to_your_image.jpg" /> {/* Replace with the path to your image */}
+      <Image src="https://tse4.mm.bing.net/th?id=OIP.Nolz7WP6ihgX54G98AcWnAHaEo&pid=Api&P=0&h=180" /> Replace with the path to your image
+</div>
+
+      
     </Page>
   </Document>
 );
@@ -43,6 +47,7 @@ export default function PDFunc() {
   return (
     <div>
       <h1>MY name is umar</h1>
+      <img src="https://tse4.mm.bing.net/th?id=OIP.Nolz7WP6ihgX54G98AcWnAHaEo&pid=Api&P=0&h=180"/>
       <PDFViewerComponent />
       <PDFDownloadButton />
     </div>

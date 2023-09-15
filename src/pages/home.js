@@ -1,7 +1,9 @@
 import React from "react";
 import { useFormik } from "formik";
 import ResponsiveAppBar from "../componenets/header";
+import { NavLink } from "react-router-dom";
 import resumsImage from "../images/hero_resume_home_page_rn.webp";
+import PDFunc from "./PDF";
 const Basic = () => {
   // const formik = useFormik({
   //   initialValues: {
@@ -109,14 +111,15 @@ const Basic = () => {
   return (
     <div className=" bg-[#f4faff] fixed w-full h-full overflow-auto">
       <ResponsiveAppBar />
-      <div className="flex justify-center mt-3 mb-3 flex-wrap items-center">
+      <div className=" flex justify-center mt-3 mb-3 flex-wrap items-center">
         {/* <div className="flex justify-center"></div> */}
         <div className="  lg:w-2/5 sm:w-full">
-          <div className="">
-          <p className=" text-5xl font-extrabold  font-serif text-[#333]">
+          <div className="media-change">
+          <p className=" text-heading text-5xl font-extrabold  font-serif text-[#333]">
             Create a custom resume and cover letter in minutes!
           </p>
           {/* <i class="far fa-file-certificate"></i> */}
+          <div>
           <div className="flex text-center pt-2  items-center">
             <svg
               className=" text-xl mr-2"
@@ -177,11 +180,13 @@ const Basic = () => {
               Step-by-step process created by resume experts.
             </span>
           </div>
-          <div className="">
-          <button className=" bg-[#008d5f] text-center px-5 mt-7 py-2 rounded-md text-white">
-            Create Resume
-          </button>
           </div>
+          <NavLink to={"./intro"} className="btn-create">
+         <button className=" btn-create bg-[#008d5f] text-center px-5 mt-7 py-2 rounded-md text-white">
+          Create Resume 
+          </button>
+          
+          </NavLink>
         </div>
         </div>
         <div className=" inline-block">
@@ -189,6 +194,7 @@ const Basic = () => {
         </div>
       
     </div>
+
     </div>
   );
 };

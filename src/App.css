@@ -1,0 +1,33 @@
+*{
+  margin: 0;
+  padding: 0
+}
+@media only screen and (max-width: 1033px) {
+    .media-change{
+      display: flex; 
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 50px;
+      text-align: center;
+    } 
+    .btn-create{
+        width: 80% !important;
+        display: flex;
+        justify-content: center;
+    }
+    
+}
+@media  screen and (max-width: 870px) {
+  .main-container-intro{
+    flex-wrap: wrap;
+  }
+  .container-contaent-intero{
+    width: 100%;
+   min-height: 250px;
+  }
+  .img-revers{
+    transform: rotate(90deg);
+   width: 100%;
+  }
+}

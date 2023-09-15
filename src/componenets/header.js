@@ -10,8 +10,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import { NavLink } from 'react-router-dom';
 
-const pages = ['Resums', 'Contect us' , 'Sign In' ,   <button className=' bg-[#008d5f] px-5 py-2 rounded-md text-white'>Create Resume</button>];
+const pages = ['Resums', 'Contect us' , 'Sign In' ,   <NavLink to={"../intro"} className=' bg-[#008d5f] px-5 py-3 rounded-md text-white'>Create Resume</NavLink>];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
