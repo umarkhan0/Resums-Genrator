@@ -111,10 +111,11 @@ const styles = StyleSheet.create({
     // color: "#fff"
   },
   secondMainContainer: {
-    height: "84.5%",
+    height: "710px",
     marginLeft: "20px",
-    width: "140px",
+    width: "150px",
     borderRight: "2px solid #44b1b4",
+    // position: "fixed"
     // marginLeft: "22px"
   },
   achivementSet: {
@@ -152,7 +153,6 @@ const styles = StyleSheet.create({
     position: "absolute"
   },
   containerAchevment: {
-    // flex: 1,
     justifyContent: "center"
     ,
   },
@@ -179,7 +179,48 @@ const styles = StyleSheet.create({
   skillNamw: {
     fontSize: "10px",
     marginTop: "5px"
-  }
+  },
+  aboutSection: {
+    height: "70px",
+    width: "100px",
+    borderBottom: "1px solid red",
+    position: "relative"
+  },
+  aboutSectionMain: {
+  marginTop: "30px",
+    fontSize: "10px",
+    backgroundColor: "#44b1b4",
+    width: "85px",
+    height: "20px",
+    textAlign: "center",
+    color: "#fff",
+    borderTopRightRadius: "10px",
+    borderBottomRightRadius: "10px",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  aboutText:{
+width: "380px",
+fontSize: "15px",
+marginTop: "20px",
+marginLeft: "15px"
+  },
+  // educationSectionMain: {
+  //   marginTop: "30px",
+  //   fontSize: "10px",
+  //   backgroundColor: "#44b1b4",
+  //   width: "85px",
+  //   height: "20px",
+  //   textAlign: "center",
+  //   color: "#fff",
+  //   borderTopRightRadius: "10px",
+  //   borderBottomRightRadius: "10px",
+  //   // position: "absolute",
+  //   flexDirection: "row",
+  //   justifyContent: "center",
+  //   alignItems: "center"
+  // }
 });
 
 const PDFDocument = () => (
@@ -214,7 +255,11 @@ const PDFDocument = () => (
           </View>
         </View>
       </View>
+      <View style={{
+        flexDirection: "row"
+      }}>
       <View style={styles.secondMainContainer}>
+        
         <Text style={styles.achivementSet}>Achevment</Text><View style={styles.containerAchevment}>
           <Text style={styles.achevmentTime}>• <span> </span> 2023 | <Text style={{color: "#44b1b4"}}>Achevment Name</Text></Text>
           <View style={{justifyContent: "center"}}>
@@ -224,8 +269,6 @@ const PDFDocument = () => (
           </View>
           <Text style={styles.achevmentTime}>• <span> </span> 2024 | <Text style={{color: "#44b1b4"}}>Achevment Name</Text></Text>
           <Text style={styles.achevmentDeatil}>Allow web developers to group a set of related items in lists. Example An unordered</Text>
-
-          {/* <span style={styles.lineStyling}></span> */}
         </View>   
         <View style={{
           marginTop: "5px"
@@ -300,6 +343,7 @@ const PDFDocument = () => (
 </div>
 <Text style={styles.skillNamw}>Urdu</Text>
         <div style={styles.outlineBar}>
+
 <div style={{
   height: "20px"
   ,
@@ -312,7 +356,142 @@ const PDFDocument = () => (
 </div>
       </View>
       </View>
-     
+      <View>
+<View style={styles.aboutSectionMain}>
+  <View style={{
+    width: "8px",
+    height: "20px",
+    backgroundColor: "#fff",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
+  }}>
+    <view style={{
+  width: "100%",
+  border: "1px solid #44b1b4"
+}}>
+
+</view>
+  </View>
+<view style={{
+  width: "95%",
+  border: "1px solid #44b1b4",
+  borderRadius: "50%"
+}}><Text >ABOUT ME</Text>
+</view>
+
+</View>
+<View style={styles.aboutText}>
+<Text>s it’s currently written, your answer is unclear. Please edit to add additional details that will help others understand how this addresses the question asked. You can find more information on how to write good answers in the help center. – 
+Community
+Bot
+ Nov 2, 2021 at 10:20</Text>
+</View>
+
+
+
+<View style={styles.aboutSectionMain}>
+  <View style={{
+    width: "8px",
+    height: "20px",
+    backgroundColor: "#fff",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
+  }}>
+    <view style={{
+  width: "100%",
+  border: "1px solid #44b1b4"
+}}>
+
+</view>
+  </View>
+<view style={{
+  width: "95%",
+  border: "1px solid #44b1b4",
+  borderRadius: "50%"
+}}><Text >EDUCATION</Text>
+</view>
+
+</View>
+<View style={{
+  marginTop: "10px",
+  marginLeft: "10px"
+}}>
+<Text style={styles.achevmentTime}> <span> </span> • 2017-2019 | <Text style={{color: "#44b1b4"}}>Univercity Name</Text></Text>
+<Text style={{
+  width: "310px",
+  fontSize: "11px",
+  marginLeft: "67px",
+  marginTop: "10px",
+  marginBottom: "10px"
+}}>To Generate Lorem Ipsum, simply select your desired settings below and hit generate. Copy preview to paste straight into rich text editors or copy the HTML markup.</Text>
+<Text style={styles.achevmentTime}> <span> </span> • 2017-2019 | <Text style={{color: "#44b1b4"}}>Univercity Name</Text></Text>
+<Text style={{
+  width: "310px",
+  fontSize: "11px",
+  marginLeft: "67px",
+  marginTop: "10px",
+  marginBottom: "10px"
+}}>To Generate Lorem Ipsum, simply select your desired settings below and hit generate. Copy preview to paste straight into rich text editors or copy the HTML markup.</Text>
+<Text style={styles.achevmentTime}> <span> </span> • 2017-2019 | <Text style={{color: "#44b1b4"}}>Univercity Name</Text></Text>
+<Text style={{
+  width: "310px",
+  fontSize: "11px",
+  marginLeft: "67px",
+  marginTop: "10px"
+}}>To Generate Lorem Ipsum, simply select your desired settings below and hit generate. Copy preview to paste straight into rich text editors or copy the HTML markup.</Text>
+</View>
+
+<View style={styles.aboutSectionMain}>
+  <View style={{
+    width: "8px",
+    height: "20px",
+    backgroundColor: "#fff",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
+  }}>
+    <view style={{
+  width: "100%",
+  border: "1px solid #44b1b4"
+}}>
+
+</view>
+  </View>
+<view style={{
+  width: "95%",
+  border: "1px solid #44b1b4",
+  borderRadius: "50%"
+}}><Text >SOETWARE</Text>
+</view>
+</View>
+<Text style={{
+  fontSize: "10px",
+  width: "400px",
+  marginTop: "5px",
+  marginLeft: "10px"
+}}>Generate Lorem Ipsum placeholder text for use in your graphic, print and web layouts, and</Text>
+<View style={{
+  width: "50px",
+  height: "50px",
+  borderRadius: "50%",
+  // border: "2px solid red",
+  borderBottom: "4px solid black",
+  borderRight: "4px solid black",
+  borderTop: "4px solid #fff",
+  // rotate: "60deg",
+  borderLeft: "4px solid black"
+  
+}}>
+
+</View>
+</View>
+
+
+
+
+     </View>
     </Page>
   </Document>
 );
