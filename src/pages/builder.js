@@ -28,10 +28,11 @@ const BuilderForm = () =>{
 
 //             </div>
 //             </div>
-<div>
+// {/* <div> */}
 
-            <PDFunc />
-        </div>
+            // {/* <PDFunc /> */}
+        // </div>
+        <PDFunc />
     )
 }
 export default BuilderForm
