@@ -2,7 +2,7 @@ import Logo from  '../images/logo-resume-nerd.svg'
 const FormHeader = () =>{
     return(
         <div>
-            <div className=" h-16 top-0 w-full fixed flex justify-between items-center">
+            <div className=" h-16 top-0 w-full  flex justify-between items-center">
             <img className='h-8 m-2' src={Logo}/>
             <div className='flex line-container'>
                 <p className='font-["libre"] font-semibold text-[16px]'>

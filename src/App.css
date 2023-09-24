@@ -26,6 +26,8 @@
     display: none;
   }.form-side-image{
     display: none;
+  }.main-first-component{
+    margin-right: 12px;
   }
   .container-contaent-intero{
     width: 100%;
@@ -36,9 +38,6 @@
    width: 100%;
   }
 }
-
-
-
 
 
 
