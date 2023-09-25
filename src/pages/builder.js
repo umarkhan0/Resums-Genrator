@@ -1,20 +1,18 @@
 import { useFormik } from "formik";
-import { useSpring, animated } from "react-spring"; // Import react-spring
+import { useSpring, animated } from "react-spring";
 import Footer from "../componenets/footer";
 import resumeImage from "../images/hero_resume_home_page_rn.webp";
 import Buttons from "../componenets/buttons";
 import { useNavigate } from "react-router-dom";
-// import { useHistory } from "react-router-dom";
+import { navigate } from "@reach/router";
 
 import {
         AiFillDelete,
         AiOutlinePlusCircle,
 } from "react-icons/ai";
-// import PAFunc from "./PDF"
 import FormHeader from "../componenets/formHeader";
 import { useState } from "react";
 const BuilderForm = () => {
-        // const history = useHistory();
         const navigate = useNavigate();
         let [inputTrueFalse, setInputChack] = useState(false);
 
@@ -35,14 +33,13 @@ const BuilderForm = () => {
                 },
                 onSubmit: (values) => {
                         console.log(values);
-navigate("/experience")
-                        // navigate("/experience", { state: { formData: values } });
+                        navigate("/experience", { state: { data: values } });
+
 
                 },
                 validate: (values) => {
                         const errors = {};
 
-                        // Example validation rules
                         if (!values.name) {
                                 errors.name = "Can we get your name?";
                         }
@@ -356,8 +353,6 @@ navigate("/experience")
                                                                                         </div>
                                                                                 )}
                                                                         </div>
-                                                                        {/* <PhoneInputField/> */}
-
                                                                         <div className="mb-4 ">
                                                                                 <label
                                                                                         htmlFor="email"
