@@ -4,7 +4,7 @@ import Footer from "../componenets/footer";
 import resumeImage from "../images/hero_resume_home_page_rn.webp";
 import Buttons from "../componenets/buttons";
 import { useNavigate } from "react-router-dom";
-import { navigate } from "@reach/router";
+// import { navigate } from "@reach/router";
 
 import {
         AiFillDelete,
@@ -25,7 +25,6 @@ const BuilderForm = () => {
                 initialValues: {
                         name: "",
                         city: "",
-                        password: "",
                         country: "",
                         phone: "",
                         extraphone: "",

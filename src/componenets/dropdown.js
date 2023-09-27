@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+import { MenuItem } from '@mui/material';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -15,22 +15,19 @@ const MenuProps = {
     },
   },
 };
-let dateLine  = new Date().getFullYear() - 5
-for (var year = new Date().getFullYear(); year >= dateLine; year--) {
-    console.log(year);
-  }
-  
+let cruntDate = new Date().getFullYear()
 const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
+  cruntDate.toString(),
+  (cruntDate - 1).toString(),
+  (cruntDate - 2).toString(),
+  (cruntDate - 3).toString(),
+  (cruntDate - 4).toString(),
+  (cruntDate - 5).toString(),
+  (cruntDate - 6).toString(),
+  (cruntDate - 7).toString(),
+  (cruntDate - 8).toString(),
+  (cruntDate - 9).toString(),
+
 ];
 
 function getStyles(name, personName, theme) {
@@ -42,35 +39,33 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function SingleSelectPlaceholder() {
+ function SingleSelectPlaceholder({ selectedValue, onChange , plac }) {
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState('');
 
   const handleChange = (event) => {
     const { value } = event.target;
-    setPersonName(value);
-    console.log(value)
+    onChange(value); // Call the onChange callback with the selected value
   };
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 250, mt: 3 }}>
+      <FormControl sx={{ width: "100%" }}>
         <Select
           displayEmpty
-          value={personName}
+          value={selectedValue}
           onChange={handleChange}
           input={<OutlinedInput />}
           MenuProps={MenuProps}
           inputProps={{ 'aria-label': 'Without label' }}
         >
           <MenuItem disabled value="">
-            <em>Placeholder</em>
+            <em className=' opacity-30'>{plac}</em>
           </MenuItem>
           {names.map((name) => (
             <MenuItem
               key={name}
               value={name}
-              style={getStyles(name, personName, theme)}
+              style={getStyles(name, selectedValue, theme)}
             >
               {name}
             </MenuItem>
@@ -80,3 +75,7 @@ export default function SingleSelectPlaceholder() {
     </div>
   );
 }
+
+
+
+export default SingleSelectPlaceholder 
