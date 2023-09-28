@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
+import Swal from 'sweetalert2';
 import { useSpring, animated } from 'react-spring';
 import Footer from '../componenets/footer';
 import resumeImage from '../images/hero_resume_home_page_rn.webp';
@@ -13,6 +14,8 @@ const Experience = () => {
   const location = useLocation();
   const contectUs = location.state.data;
   // console.log(data)
+  // let jobva = formik.values.JobTitle
+  // const []
   const [selectedYear, setSelectedYear] = useState('');
   const [lastselectedYear, setlastSelectedYear] = useState('');
   const [isChecked, setIsChecked] = useState(false);
@@ -52,7 +55,30 @@ const Experience = () => {
     !isChecked ?  experience.lastYear = lastselectedYear : experience.lastYear = "not found"
       experience.present = isChecked
      const ExperiencePlusContect = Object.assign({}, {contectUs} , {experience});
-      navigate('/secondexperience', { state: { data: ExperiencePlusContect } });
+      navigate('/experience', { state: { data: ExperiencePlusContect } });
+      Swal.fire({
+        title: 'Don’t have work experience?',
+        icon: 'question',
+        iconHtml: '?',
+        confirmButtonText: 'ADD VOLUNTEER EXPERIENCE',
+        cancelButtonText: 'Skip >',
+        showCancelButton: true,
+        showCloseButton: true
+      }).then((res) =>{
+console.log(res.isConfirmed);
+if(res.isConfirmed){
+
+
+  console.log(formik.values.JobTitle = "")
+
+//   let secondExperienceAdd = experience;
+//  let completeExperiece = Object.assign({}, secondExperienceAdd , ExperiencePlusContect);
+//  console.log(completeExperiece)
+}
+
+
+      })
+      console.log(experience)
     },
     validate: (values) => {
       const errors = {};
