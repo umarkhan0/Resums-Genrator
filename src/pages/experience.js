@@ -15,8 +15,14 @@ const Experience = () => {
   const contectUs = location.state.data;
   // console.log(data)
   // let jobva = formik.values.JobTitle
-  // const []
+  const [experienceAdded , setExperienceAdded] = useState([]);
+  const [JobTitleValuefirst, setjobTitleValue] = useState("");
+  const [companyValue, setCcpmpanyValue] = useState("");
   const [selectedYear, setSelectedYear] = useState('');
+  const [cityTown, setcityvalue] = useState('');
+  const [countryValue, setCountryvalue] = useState('');
+// console.log(contectUs)
+
   const [lastselectedYear, setlastSelectedYear] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const handleYearChange = (value) => {
@@ -27,9 +33,9 @@ const Experience = () => {
     // handlelastYearChange(is)
   };
   const handlelastYearChange = (value) => {
-   
-     setlastSelectedYear(value)
-    
+
+    setlastSelectedYear(value)
+
   };
 
   const navigate = useNavigate();
@@ -39,7 +45,6 @@ const Experience = () => {
     to: { transform: 'translateY(0%)' },
     config: { duration: 1000 },
   });
-
   const formik = useFormik({
     initialValues: {
       JobTitle: '',
@@ -48,13 +53,23 @@ const Experience = () => {
       country: '',
       year: '',
       lastYear: '',
-      present: "",
+      present: '',
     },
     onSubmit: (experience) => {
+      experience.JobTitle = JobTitleValuefirst;
+      experience.Company = companyValue;
+      experience.CityTown = cityTown;
+      experience.country = countryValue
+      // console.log(experience)
+      // console.log(experience)
+      setjobTitleValue(formik.values.JobTitle)
       experience.year = selectedYear;
-    !isChecked ?  experience.lastYear = lastselectedYear : experience.lastYear = "not found"
+      !isChecked ? experience.lastYear = lastselectedYear : experience.lastYear = "not found"
+
+
+
       experience.present = isChecked
-     const ExperiencePlusContect = Object.assign({}, {contectUs} , {experience});
+      const ExperiencePlusContect = Object.assign({}, { contectUs }, { experienceAdded });
       navigate('/experience', { state: { data: ExperiencePlusContect } });
       Swal.fire({
         title: 'Don’t have work experience?',
@@ -64,28 +79,33 @@ const Experience = () => {
         cancelButtonText: 'Skip >',
         showCancelButton: true,
         showCloseButton: true
-      }).then((res) =>{
-console.log(res.isConfirmed);
-if(res.isConfirmed){
+      }).then((res) => {
+        if (res.isConfirmed) {
+          setCcpmpanyValue("")
+          setjobTitleValue("");
+          setcityvalue("")
+          setSelectedYear("")
+          setlastSelectedYear("")
+          setCountryvalue("")
+          setIsChecked(false)
+          // console.log(JobTitleValuefirst)
 
-
-  console.log(formik.values.JobTitle = "")
-
-//   let secondExperienceAdd = experience;
-//  let completeExperiece = Object.assign({}, secondExperienceAdd , ExperiencePlusContect);
-//  console.log(completeExperiece)
-}
+          
+        }
 
 
       })
-      console.log(experience)
+      setExperienceAdded(...experience , experience)
+      // console.log(experienceAdded)
+      console.log(experienceAdded)
     },
+    
     validate: (values) => {
       const errors = {};
-      !values.JobTitle ? (errors.JobTitle = 'Can we get your Title?') : console.log();
-      !values.Company ? (errors.Company = 'Company is required') : console.log();
-      !values.CityTown ? (errors.CityTown = 'City is required') : console.log();
-      !values.country ? (errors.country = 'Country is required') : console.log();
+      !JobTitleValuefirst ? (errors.JobTitle = 'Can we get your Title?') : console.log();
+      !companyValue ? (errors.Company = 'Company is required') : console.log();
+      !cityTown ? (errors.CityTown = 'City is required') : console.log();
+      !countryValue ? (errors.country = 'Country is required') : console.log();
       selectedYear == "" ? (errors.year = 'Year is required') : console.log();
       !isChecked && lastselectedYear == "" ? (errors.lastYear = 'Last Year is required') : console.log();
 
@@ -115,12 +135,14 @@ if(res.isConfirmed){
                       id="JobTitle"
                       name="JobTitle"
                       placeholder="JobTitle"
-                      onChange={formik.handleChange}
+                      onChange={(e) => {
+                        setjobTitleValue(e.target.value)
+                      }}
                       onBlur={formik.handleBlur}
-                      value={formik.values.JobTitle}
+                      value={JobTitleValuefirst}
                       className="p-2 border border-gray-300 rounded w-full outline-blue-400"
                     />
-                    {formik.touched.JobTitle && formik.errors.JobTitle && (
+                    {!JobTitleValuefirst && !JobTitleValuefirst && (
                       <div className="text-red-600 text-sm mt-1">{formik.errors.JobTitle}</div>
                     )}
                   </div>
@@ -134,12 +156,14 @@ if(res.isConfirmed){
                       id="Company"
                       name="Company"
                       placeholder="SMIT"
-                      onChange={formik.handleChange}
+                      onChange={(e) => {
+                        setCcpmpanyValue(e.target.value)
+                      }}
                       onBlur={formik.handleBlur}
-                      value={formik.values.Company}
+                      value={companyValue}
                       className="p-2 border border-gray-300 rounded w-full outline-blue-400"
                     />
-                    {formik.touched.Company && formik.errors.Company && (
+                    {!companyValue && !companyValue && (
                       <div className="text-red-600 text-sm mt-1">{formik.errors.Company}</div>
                     )}
                   </div>
@@ -154,13 +178,15 @@ if(res.isConfirmed){
                         id="CityTown"
                         name="CityTown"
                         placeholder="Karachi"
-                        onChange={formik.handleChange}
+                        onChange={(e) => {
+                          setcityvalue(e.target.value)
+                        }}
                         onBlur={formik.handleBlur}
-                        value={formik.values.CityTown}
+                        value={cityTown}
                         maxLength={13}
                         className="p-2 border border-gray-300 rounded outline-blue-400 w-full"
                       />
-                      {formik.touched.CityTown && formik.errors.CityTown && (
+                      {!cityTown && !cityTown && (
                         <div className="text-red-600 text-sm mt-1">{formik.errors.CityTown}</div>
                       )}
                     </div>
@@ -176,14 +202,16 @@ if(res.isConfirmed){
                         id="country"
                         name="country"
                         placeholder="country"
-                        onChange={formik.handleChange}
+                        onChange={(e) => {
+                          setCountryvalue(e.target.value)
+                        }}
                         onBlur={formik.handleBlur}
-                        value={formik.values.country}
+                        value={countryValue}
                         maxLength={13}
                         className="p-2 border border-gray-300 rounded outline-blue-400 w-full"
                       />
 
-                      {formik.touched.country && formik.errors.country && (
+                      {!countryValue && !countryValue && (
                         <div className="text-red-600 text-sm mt-1">{formik.errors.country}</div>
                       )}
                     </div>
