@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { useFormik } from 'formik';
 import Swal from 'sweetalert2';
 import { useSpring, animated } from 'react-spring';
@@ -10,32 +10,34 @@ import FormHeader from '../componenets/formHeader';
 import { useLocation } from 'react-router-dom';
 import SingleSelectPlaceholder from '../componenets/dropdown';
 import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
+// import { useLocation } from "react-router-dom"
+
 const Experience = () => {
   const location = useLocation();
   const contectUs = location.state.data;
-  // console.log(data)
-  // let jobva = formik.values.JobTitle
-  const [experienceAdded , setExperienceAdded] = useState([]);
+
+  const [experienceAdded, setExperienceAdded] = useState([]);
+  const [swalSetUp , setSwalSetUp] = useState(true);
+  // Initialize as an empty array
   const [JobTitleValuefirst, setjobTitleValue] = useState("");
   const [companyValue, setCcpmpanyValue] = useState("");
+  const [nextpage , setNextPage] = useState(false)
   const [selectedYear, setSelectedYear] = useState('');
   const [cityTown, setcityvalue] = useState('');
   const [countryValue, setCountryvalue] = useState('');
-// console.log(contectUs)
-
   const [lastselectedYear, setlastSelectedYear] = useState('');
   const [isChecked, setIsChecked] = useState(false);
+
   const handleYearChange = (value) => {
     setSelectedYear(value);
   };
+
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
-    // handlelastYearChange(is)
   };
+
   const handlelastYearChange = (value) => {
-
-    setlastSelectedYear(value)
-
+    setlastSelectedYear(value);
   };
 
   const navigate = useNavigate();
@@ -45,74 +47,97 @@ const Experience = () => {
     to: { transform: 'translateY(0%)' },
     config: { duration: 1000 },
   });
-  const formik = useFormik({
-    initialValues: {
-      JobTitle: '',
-      Company: '',
-      CityTown: '',
-      country: '',
-      year: '',
-      lastYear: '',
-      present: '',
-    },
-    onSubmit: (experience) => {
-      experience.JobTitle = JobTitleValuefirst;
-      experience.Company = companyValue;
-      experience.CityTown = cityTown;
-      experience.country = countryValue
-      // console.log(experience)
-      // console.log(experience)
-      setjobTitleValue(formik.values.JobTitle)
-      experience.year = selectedYear;
-      !isChecked ? experience.lastYear = lastselectedYear : experience.lastYear = "not found"
+
+ const formik = useFormik({
+  initialValues: {
+    JobTitle: '',
+    Company: '',
+    CityTown: '',
+    country: '',
+    year: '',
+    lastYear: '',
+    present: '',
+  },
+  onSubmit: (experience) => {
+    const newExperience = {
+      JobTitle: JobTitleValuefirst,
+      Company: companyValue,
+      CityTown: cityTown,
+      country: countryValue,
+      year: selectedYear,
+      lastYear: isChecked ? lastselectedYear : "not found",
+      present: isChecked,
+    };
+
+    setExperienceAdded([...experienceAdded, newExperience]);
+    console.log(swalSetUp)
+    if(swalSetUp){
+  Swal.fire({
+      title: 'Don’t have work experience?',
+      icon: 'question',
+      iconHtml: '?',
+      confirmButtonText: 'ADD VOLUNTEER EXPERIENCE',
+      cancelButtonText: 'Skip >',
+      showCancelButton: true,
+      showCloseButton: true,
+    }).then((res) => {
+      if (res.isConfirmed) {
+        setCcpmpanyValue("");
+        setjobTitleValue("");
+        setcityvalue("");
+        setSelectedYear("");
+        setlastSelectedYear("");
+        setCountryvalue("");
+        setIsChecked(false);
+      }
+
+      console.log(experienceAdded);
+      if(!res.isConfirmed){
+        setNextPage(true)
+        // const experiencePlusContect = Object.assign({} , {contectUs},{experienceAdded})
+        
+                // navigate("/education", { state: { data: experiencePlusContect} });
+      }
+//       else{
+// 
+//       }
+    });
+  }
+  },
+
+  validate: (values) => {
+    const errors = {};
+    !JobTitleValuefirst ? (errors.JobTitle = 'Can we get your Title?') : console.log();
+    !companyValue ? (errors.Company = 'Company is required') : console.log();
+    !cityTown ? (errors.CityTown = 'City is required') : console.log();
+    !countryValue ? (errors.country = 'Country is required') : console.log();
+    selectedYear == "" ? (errors.year = 'Year is required') : console.log();
+    !isChecked && lastselectedYear == "" ? (errors.lastYear = 'Last Year is required') : console.log();
 
 
-
-      experience.present = isChecked
-      const ExperiencePlusContect = Object.assign({}, { contectUs }, { experienceAdded });
-      navigate('/experience', { state: { data: ExperiencePlusContect } });
-      Swal.fire({
-        title: 'Don’t have work experience?',
-        icon: 'question',
-        iconHtml: '?',
-        confirmButtonText: 'ADD VOLUNTEER EXPERIENCE',
-        cancelButtonText: 'Skip >',
-        showCancelButton: true,
-        showCloseButton: true
-      }).then((res) => {
-        if (res.isConfirmed) {
-          setCcpmpanyValue("")
-          setjobTitleValue("");
-          setcityvalue("")
-          setSelectedYear("")
-          setlastSelectedYear("")
-          setCountryvalue("")
-          setIsChecked(false)
-          // console.log(JobTitleValuefirst)
-
-          
-        }
+    return errors;
+  },
 
 
-      })
-      setExperienceAdded(...experience , experience)
-      // console.log(experienceAdded)
-      console.log(experienceAdded)
-    },
-    
-    validate: (values) => {
-      const errors = {};
-      !JobTitleValuefirst ? (errors.JobTitle = 'Can we get your Title?') : console.log();
-      !companyValue ? (errors.Company = 'Company is required') : console.log();
-      !cityTown ? (errors.CityTown = 'City is required') : console.log();
-      !countryValue ? (errors.country = 'Country is required') : console.log();
-      selectedYear == "" ? (errors.year = 'Year is required') : console.log();
-      !isChecked && lastselectedYear == "" ? (errors.lastYear = 'Last Year is required') : console.log();
+});
+useEffect(()=>{
+  console.log("horaha ha")
+if(experienceAdded.length == 1){
+  setSwalSetUp(false);
+  
+}
+if(experienceAdded.length == 2){
+  const experiencePlusContect = Object.assign({} , {contectUs},{experienceAdded});
+     navigate("/education", { state: { data: experiencePlusContect} });
+}
+}, [experienceAdded])
+if(nextpage){
+  const experiencePlusContect = Object.assign({} , {contectUs},{experienceAdded});
+   navigate("/education", { state: { data: experiencePlusContect} });
 
+}
 
-      return errors;
-    },
-  });
+// console.log(experienceAdded);
 
   return (
     <div>

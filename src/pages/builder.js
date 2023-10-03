@@ -3,8 +3,7 @@ import { useSpring, animated } from "react-spring";
 import Footer from "../componenets/footer";
 import resumeImage from "../images/hero_resume_home_page_rn.webp";
 import Buttons from "../componenets/buttons";
-import { useNavigate } from "react-router-dom";
-// import { navigate } from "@reach/router";
+import { useNavigate , useLocation } from "react-router-dom";
 
 import {
         AiFillDelete,
@@ -13,9 +12,9 @@ import {
 import FormHeader from "../componenets/formHeader";
 import { useState } from "react";
 const BuilderForm = () => {
+        
         const navigate = useNavigate();
         let [inputTrueFalse, setInputChack] = useState(false);
-
         const springProps = useSpring({
                 from: { transform: "translateY(20%)" }, 
                 to: { transform: "translateY(0%)" },
