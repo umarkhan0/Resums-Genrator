@@ -1,34 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { MenuItem } from '@mui/material';
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-let cruntDate = new Date().getFullYear()
-const names = [
-  cruntDate.toString(),
-  (cruntDate - 1).toString(),
-  (cruntDate - 2).toString(),
-  (cruntDate - 3).toString(),
-  (cruntDate - 4).toString(),
-  (cruntDate - 5).toString(),
-  (cruntDate - 6).toString(),
-  (cruntDate - 7).toString(),
-  (cruntDate - 8).toString(),
-  (cruntDate - 9).toString(),
-
-];
+let monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 function getStyles(name, personName, theme) {
   return {
@@ -39,7 +16,7 @@ function getStyles(name, personName, theme) {
   };
 }
 
- function SingleSelectPlaceholder({ selectedValue, onChange , plac , widthMul }) {
+function SingleSelectPlaceholderMonth({ selectedValue, onChange , plac }) {
   const theme = useTheme();
 
   const handleChange = (event) => {
@@ -49,20 +26,19 @@ function getStyles(name, personName, theme) {
 
   return (
     <div>
-      <FormControl sx={{ width: widthMul }}>
+      <FormControl sx={{ width: "120px" }}>
         <Select
           displayEmpty
           value={selectedValue}
           onChange={handleChange}
           input={<OutlinedInput />}
-          MenuProps={MenuProps}
           inputProps={{ 'aria-label': 'Without label' }}
-          style={{ height: "41px" }} 
+          style={{ height: '41px' }} // Adjust the height as needed
         >
           <MenuItem disabled value="">
             <em className=' opacity-30'>{plac}</em>
           </MenuItem>
-          {names.map((name) => (
+          {monthName.map((name) => (
             <MenuItem
               key={name}
               value={name}
@@ -77,6 +53,4 @@ function getStyles(name, personName, theme) {
   );
 }
 
-
-
-export default SingleSelectPlaceholder 
+export default SingleSelectPlaceholderMonth;

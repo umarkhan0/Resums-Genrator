@@ -245,7 +245,7 @@ if(nextpage){
                     <label className="block text-[#535353] font-medium mb-2">
                       Start Date
                     </label>
-                    <SingleSelectPlaceholder selectedValue={selectedYear} onChange={handleYearChange} plac={"Start Date"} />
+                    <SingleSelectPlaceholder selectedValue={selectedYear} onChange={handleYearChange} plac={"Start Date"} widthMul={"100%"} />
                     {formik.touched.year && formik.errors.year && (
                       <div className="text-red-600 text-sm mt-1">{formik.errors.year}</div>
                     )}
@@ -257,7 +257,7 @@ if(nextpage){
                       <label className="block text-[#535353] font-medium mb-2">
                         End Date
                       </label>
-                      <SingleSelectPlaceholder selectedValue={lastselectedYear} isChecked={isChecked} onChange={handlelastYearChange} plac={"End Date"} />
+                      <SingleSelectPlaceholder selectedValue={lastselectedYear} isChecked={isChecked} onChange={handlelastYearChange} plac={"End Date"} widthMul={"100%"} />
                       {formik.touched.lastYear && formik.errors.lastYear && (
                         <div className="text-red-600 text-sm mt-1">{formik.errors.lastYear}</div>
                       )}</div>

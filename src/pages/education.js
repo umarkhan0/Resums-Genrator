@@ -5,6 +5,10 @@ import resumeImage from "../images/hero_resume_home_page_rn.webp";
 import Buttons from "../componenets/buttons";
 import { useNavigate, useLocation } from "react-router-dom";
 import ComboBox from "../componenets/seachSelect";
+import SelectSmall from "../componenets/dateselect";
+import SingleSelectPlaceholder from "../componenets/dropdown";
+import SingleSelectPlaceholderMonth from "../componenets/monthselect";
+
 import {
         AiFillDelete,
         AiOutlinePlusCircle,
@@ -12,9 +16,21 @@ import {
 import FormHeader from "../componenets/formHeader";
 import { useState } from "react";
 const Education = () => {
-        const selectedValuepass = (value) => {
-                console.log(value)
+        const [selectedYear, setSelectedYear] = useState('');
+
+        const handleYearChange = (value) => {
+                setSelectedYear(value);
         };
+        const [selectedMonth, setSelectedMonth] = useState('');
+
+        const handleMonthChange = (value) => {
+                setSelectedMonth(value);
+        };
+        const [dgreeValue, setDegreeValue] = useState("")
+        const handleSelectionChange = (selectedValue) => {
+                setDegreeValue(selectedValue)// Log the selected value to the console
+        };
+
         const navigate = useNavigate();
         let [inputTrueFalse, setInputChack] = useState(false);
         const springProps = useSpring({
@@ -27,10 +43,13 @@ const Education = () => {
                         schoolName: "",
                         cityTown: "",
                         city: "",
+                        fieldStudy: "",
+                        Degree: "",
                         country: "",
-                        phone: "",
-                        extraphone: "",
-                        email: "",
+                      
+                       
+                        year: "",
+                        month: ""
                 },
                 onSubmit: (values) => {
                         console.log(values);
@@ -40,9 +59,23 @@ const Education = () => {
                 },
                 validate: (values) => {
                         const errors = {};
-
+                        values.Degree = dgreeValue;
+                        values.year = selectedYear;
+                        values.month = selectedMonth;
                         if (!values.schoolName) {
                                 errors.schoolName = "Can we get your name?";
+                        }
+                        if (!values.year) {
+                                errors.year = "Can we get your name?";
+                        }
+                        if (!values.month) {
+                                errors.month = "Can we get your name?";
+                        }
+                        if (!values.fieldStudy) {
+                                errors.fieldStudy = "Can we get your name?";
+                        }
+                        if (!values.Degree) {
+                                errors.Degree = "Please enter degree";
                         }
                         if (!values.country) {
                                 errors.country = "Country is required";
@@ -50,22 +83,10 @@ const Education = () => {
                         if (!values.cityTown) {
                                 errors.cityTown = "CityTown is required";
                         }
-                        if (!values.city) {
-                                errors.city = "City is required";
-                        }
-                        if (!values.phone) {
-                                errors.phone = "phone is required";
-                        }
+                        
+                        
 
-                        if (!values.email) {
-                                errors.email = "Required";
-                        } else if (
-                                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
-                                        values.email,
-                                )
-                        ) {
-                                errors.email = "Invalid email address";
-                        }
+                        
 
                         return errors;
                 },
@@ -234,232 +255,92 @@ const Education = () => {
 
                                                                         </div>
 
-                                                                        <ComboBox onChange={selectedValuepass} />
-
-
-
-
-                                                                        <div className="mb-4">
-                                                                                <label
-                                                                                        htmlFor="city"
-                                                                                        className="block text-[#535353] font-medium mb-2"
-                                                                                >
-                                                                                        City
-                                                                                </label>
-                                                                                <input
-                                                                                        type="text"
-                                                                                        id="city"
-                                                                                        name="city"
-                                                                                        placeholder="Karachi"
-                                                                                        onChange={
-                                                                                                formik.handleChange
-                                                                                        }
-                                                                                        onBlur={
-                                                                                                formik.handleBlur
-                                                                                        }
-                                                                                        value={
-                                                                                                formik
-                                                                                                        .values
-                                                                                                        .city
-                                                                                        }
-                                                                                        className=" p-2 border border-gray-300 rounded w-full outline-blue-400"
-                                                                                />
-                                                                                {formik
-                                                                                        .touched
-                                                                                        .city &&
-                                                                                        formik
-                                                                                                .errors
-                                                                                                .city && (
-                                                                                                <div className="text-red-600 text-sm mt-1">
-                                                                                                        {
-                                                                                                                formik
-                                                                                                                        .errors
-                                                                                                                        .city
-                                                                                                        }
-                                                                                                </div>
-                                                                                        )}
-                                                                        </div>
-
-                                                                        <div className="flex justify-between items-center">
-                                                                                <div className="mb-4">
-                                                                                        <label
-                                                                                                htmlFor="phone"
-                                                                                                className="block text-[#535353] font-medium mb-2"
-                                                                                        >
-                                                                                                Phone
-                                                                                                Number
-                                                                                        </label>
-                                                                                        <input
-                                                                                                type="number"
-                                                                                                id="phone"
-                                                                                                name="phone"
-                                                                                                placeholder="03152805977"
-                                                                                                onChange={(
-                                                                                                        e,
-                                                                                                ) => {
-                                                                                                        if (
-                                                                                                                e
-                                                                                                                        .target
-                                                                                                                        .value
-                                                                                                                        .length <=
-                                                                                                                15
-                                                                                                        ) {
-                                                                                                                formik.handleChange(
-                                                                                                                        e,
-                                                                                                                );
-                                                                                                        }
-                                                                                                }}
-                                                                                                onBlur={
-                                                                                                        formik.handleBlur
-                                                                                                }
-                                                                                                value={
+                                                                        <ComboBox onSelectionChange={handleSelectionChange} />
+                                                                        {formik
+                                                                                .touched
+                                                                                .Degree &&
+                                                                                formik
+                                                                                        .errors
+                                                                                        .Degree && (
+                                                                                        <div className="text-red-600 text-sm mt-1">
+                                                                                                {
                                                                                                         formik
-                                                                                                                .values
-                                                                                                                .phone
+                                                                                                                .errors
+                                                                                                                .Degree
                                                                                                 }
-                                                                                                maxLength={
-                                                                                                        13
-                                                                                                }
-                                                                                                className=" p-2 border border-gray-300 rounded outline-blue-400 w-full "
-                                                                                        />
-                                                                                        {formik
-                                                                                                .touched
-                                                                                                .phone &&
-                                                                                                formik
-                                                                                                        .errors
-                                                                                                        .phone && (
-                                                                                                        <div className="text-red-600 text-sm mt-1">
-                                                                                                                {
-                                                                                                                        formik
-                                                                                                                                .errors
-                                                                                                                                .phone
-                                                                                                                }
-                                                                                                        </div>
-                                                                                                )}
-                                                                                </div>
-                                                                                {inputTrueFalse ? (
-                                                                                        <div className="mb-4">
-                                                                                                <div className="flex justify-between items-center hover:text-[#2cacbb]">
-                                                                                                        <label
-                                                                                                                htmlFor="extraphone"
-                                                                                                                className="block text-[#535353]  font-medium mb-2"
-                                                                                                        >
-                                                                                                                Additional
-                                                                                                                Phone
-                                                                                                        </label>
-                                                                                                        <AiFillDelete
-                                                                                                                size={
-                                                                                                                        "20px"
-                                                                                                                }
-                                                                                                                className=" cursor-pointer "
-                                                                                                                onClick={() => {
-                                                                                                                        setInputChack(
-                                                                                                                                "",
-                                                                                                                        );
-                                                                                                                        formik.values.extraphone =
-                                                                                                                                "";
-                                                                                                                        setInputChack(
-                                                                                                                                false,
-                                                                                                                        );
-                                                                                                                }}
-                                                                                                        />
-                                                                                                </div>
-                                                                                                <input
-                                                                                                        type="number"
-                                                                                                        id="extraphone"
-                                                                                                        name="extraphone"
-                                                                                                        // value={inputTrueFalse}
-                                                                                                        placeholder="03152805977"
-                                                                                                        onChange={(
-                                                                                                                e,
-                                                                                                        ) => {
-                                                                                                                if (
-                                                                                                                        e
-                                                                                                                                .target
-                                                                                                                                .value
-                                                                                                                                .length <=
-                                                                                                                        15
-                                                                                                                ) {
-                                                                                                                        formik.handleChange(
-                                                                                                                                e,
-                                                                                                                        );
-                                                                                                                }
-                                                                                                        }}
-                                                                                                        onBlur={
-                                                                                                                formik.handleBlur
-                                                                                                        }
-                                                                                                        value={
-                                                                                                                formik
-                                                                                                                        .values
-                                                                                                                        .extraphone
-                                                                                                        }
-                                                                                                        maxLength={
-                                                                                                                13
-                                                                                                        }
-                                                                                                        className="p-2 border border-gray-300 rounded outline-blue-400 w-full"
-                                                                                                />
-                                                                                        </div>
-                                                                                ) : (
-                                                                                        <div
-                                                                                                className="flex justify-center w-1/2 mt-3 items-center cursor-pointer"
-                                                                                                onClick={() =>
-                                                                                                        setInputChack(
-                                                                                                                true,
-                                                                                                        )
-                                                                                                }
-                                                                                        >
-                                                                                                <div className="text-add-other flex justify-center items-center">
-                                                                                                        <AiOutlinePlusCircle color="#03acbb" />
-                                                                                                        <span className="text-[#03acbb]">
-                                                                                                                Add
-                                                                                                                another
-                                                                                                                number
-                                                                                                        </span>
-                                                                                                </div>
                                                                                         </div>
                                                                                 )}
-                                                                        </div>
-                                                                        <div className="mb-4 ">
-                                                                                <label
-                                                                                        htmlFor="email"
-                                                                                        className="block text-gray-600 font-medium"
-                                                                                >
-                                                                                        Email
-                                                                                </label>
-                                                                                <input
-                                                                                        type="email"
-                                                                                        id="email"
-                                                                                        name="email"
-                                                                                        onChange={
-                                                                                                formik.handleChange
-                                                                                        }
-                                                                                        onBlur={
-                                                                                                formik.handleBlur
-                                                                                        }
-                                                                                        value={
-                                                                                                formik
-                                                                                                        .values
-                                                                                                        .email
-                                                                                        }
-                                                                                        placeholder="umaraamir959@gmail.com"
-                                                                                        className="w-full p-2 border border-gray-300 rounded outline-blue-400"
-                                                                                />
 
-                                                                                {formik
-                                                                                        .touched
-                                                                                        .email &&
-                                                                                        formik
-                                                                                                .errors
-                                                                                                .email && (
-                                                                                                <div className="text-red-600 text-sm mt-1">
-                                                                                                        {
-                                                                                                                formik
-                                                                                                                        .errors
-                                                                                                                        .email
-                                                                                                        }
-                                                                                                </div>
-                                                                                        )}
-                                                                        </div>
+
+
+
+
+<div className="flex flex-col sm:flex-row justify-between items-center">
+    <div className="mb-4 sm:mr-2 w-full sm:w-2/5">
+        <label htmlFor="fieldStudy" className="block text-[#535353] font-medium mb-2">
+            Field of Study
+        </label>
+        <input
+            type="text"
+            id="fieldStudy"
+            name="fieldStudy"
+            placeholder="Business Administration"
+            onChange={(e) => {
+                if (e.target.value.length <= 15) {
+                    formik.handleChange(e);
+                }
+            }}
+            onBlur={formik.handleBlur}
+            value={formik.values.fieldStudy}
+            maxLength={13}
+            className="p-2 border border-gray-300 rounded outline-blue-400 w-full"
+        />
+        {formik.touched.fieldStudy && formik.errors.fieldStudy && (
+            <div className="text-red-600 text-sm mt-1">
+                {formik.errors.fieldStudy}
+            </div>
+        )}
+    </div>
+    {/* <div className="mb-4 sm:mr-2 w-full sm:w-1/3"> */}
+    <div className="mb-4 sm:mt-4 w-full sm:w-1/3">
+    <label className="  text-[#535353] w-full font-medium">
+        Graduation Date 
+    </label>
+    
+    <div className="mb-4 mt-2  w-full sm:w-full">
+        <SingleSelectPlaceholder
+            selectedValue={selectedMonth}
+            onChange={handleMonthChange}
+            plac={"Month"}
+            widthMul={"100%"}
+        />
+        {formik.touched.month && formik.errors.month && (
+            <div className="text-red-600 text-sm mt-1">
+                {formik.errors.month}
+            </div>
+        )}
+    </div>
+</div>
+    <div className="mb-4 sm:ml-2 sm:mt-8  w-full sm:w-1/3">
+        <SingleSelectPlaceholder
+            selectedValue={selectedYear}
+            onChange={handleYearChange}
+            plac={"Year"}
+            widthMul={"100%"}
+        />
+        {formik.touched.year && formik.errors.year && (
+            <div className="text-red-600 text-sm mt-1">
+                {formik.errors.year}
+            </div>
+        )}
+    </div>
+</div>
+
+
+
+                                                                      
+                                                                        
+                                                                       
                                                                         <Buttons />
                                                                 </form>
                                                         </div>
