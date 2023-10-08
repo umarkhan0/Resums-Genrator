@@ -8,7 +8,9 @@ import ComboBox from "../componenets/seachSelect";
 import SelectSmall from "../componenets/dateselect";
 import SingleSelectPlaceholder from "../componenets/dropdown";
 import SingleSelectPlaceholderMonth from "../componenets/monthselect";
-
+import { FaUnderline, FaBold } from "react-icons/fa"
+import { AiOutlineUnorderedList } from "react-icons/ai"
+import { FiItalic } from "react-icons/fi"
 import {
         AiFillDelete,
         AiOutlinePlusCircle,
@@ -16,8 +18,23 @@ import {
 import FormHeader from "../componenets/formHeader";
 import { useState } from "react";
 const Education = () => {
-        const [selectedYear, setSelectedYear] = useState('');
+        const [boldText, setBoldText] = useState('');
+        const [selectionStart, setSelectionStart] = useState(0);
+        const [selectionEnd, setSelectionEnd] = useState(0);
+        const handleBoldText = () => {
+                if (selectionStart !== selectionEnd) {
+                        const selectedText = decription.substring(selectionStart, selectionEnd);
+                        const newText = decription.replace(selectedText, `<strong>${selectedText}</strong>`);
+                        setBoldText(newText);
 
+                }
+        };
+        const handleTextSelection = (e) => {
+                setSelectionEnd(e.target.selectionEnd);
+        };
+        const [selectedYear, setSelectedYear] = useState('');
+        const [decription, setDescription] = useState("");
+        console.log(decription);
         const handleYearChange = (value) => {
                 setSelectedYear(value);
         };
@@ -28,11 +45,10 @@ const Education = () => {
         };
         const [dgreeValue, setDegreeValue] = useState("")
         const handleSelectionChange = (selectedValue) => {
-                setDegreeValue(selectedValue)// Log the selected value to the console
+                setDegreeValue(selectedValue)
         };
 
         const navigate = useNavigate();
-        let [inputTrueFalse, setInputChack] = useState(false);
         const springProps = useSpring({
                 from: { transform: "translateY(20%)" },
                 to: { transform: "translateY(0%)" },
@@ -46,8 +62,8 @@ const Education = () => {
                         fieldStudy: "",
                         Degree: "",
                         country: "",
-                      
-                       
+
+
                         year: "",
                         month: ""
                 },
@@ -83,10 +99,10 @@ const Education = () => {
                         if (!values.cityTown) {
                                 errors.cityTown = "CityTown is required";
                         }
-                        
-                        
 
-                        
+
+
+
 
                         return errors;
                 },
@@ -275,72 +291,93 @@ const Education = () => {
 
 
 
-<div className="flex flex-col sm:flex-row justify-between items-center">
-    <div className="mb-4 sm:mr-2 w-full sm:w-2/5">
-        <label htmlFor="fieldStudy" className="block text-[#535353] font-medium mb-2">
-            Field of Study
-        </label>
-        <input
-            type="text"
-            id="fieldStudy"
-            name="fieldStudy"
-            placeholder="Business Administration"
-            onChange={(e) => {
-                if (e.target.value.length <= 15) {
-                    formik.handleChange(e);
-                }
-            }}
-            onBlur={formik.handleBlur}
-            value={formik.values.fieldStudy}
-            maxLength={13}
-            className="p-2 border border-gray-300 rounded outline-blue-400 w-full"
-        />
-        {formik.touched.fieldStudy && formik.errors.fieldStudy && (
-            <div className="text-red-600 text-sm mt-1">
-                {formik.errors.fieldStudy}
-            </div>
-        )}
-    </div>
-    {/* <div className="mb-4 sm:mr-2 w-full sm:w-1/3"> */}
-    <div className="mb-4 sm:mt-4 w-full sm:w-1/3">
-    <label className="  text-[#535353] w-full font-medium">
-        Graduation Date 
-    </label>
-    
-    <div className="mb-4 mt-2  w-full sm:w-full">
-        <SingleSelectPlaceholder
-            selectedValue={selectedMonth}
-            onChange={handleMonthChange}
-            plac={"Month"}
-            widthMul={"100%"}
-        />
-        {formik.touched.month && formik.errors.month && (
-            <div className="text-red-600 text-sm mt-1">
-                {formik.errors.month}
-            </div>
-        )}
-    </div>
-</div>
-    <div className="mb-4 sm:ml-2 sm:mt-8  w-full sm:w-1/3">
-        <SingleSelectPlaceholder
-            selectedValue={selectedYear}
-            onChange={handleYearChange}
-            plac={"Year"}
-            widthMul={"100%"}
-        />
-        {formik.touched.year && formik.errors.year && (
-            <div className="text-red-600 text-sm mt-1">
-                {formik.errors.year}
-            </div>
-        )}
-    </div>
-</div>
+                                                                        <div className="flex flex-col sm:flex-row justify-between items-center">
+                                                                                <div className="mb-4 sm:mr-2 w-full sm:w-2/5">
+                                                                                        <label htmlFor="fieldStudy" className="block text-[#535353] font-medium mb-2">
+                                                                                                Field of Study
+                                                                                        </label>
+                                                                                        <input
+                                                                                                type="text"
+                                                                                                id="fieldStudy"
+                                                                                                name="fieldStudy"
+                                                                                                placeholder="Business Administration"
+                                                                                                onChange={(e) => {
+                                                                                                        if (e.target.value.length <= 15) {
+                                                                                                                formik.handleChange(e);
+                                                                                                        }
+                                                                                                }}
+                                                                                                onBlur={formik.handleBlur}
+                                                                                                value={formik.values.fieldStudy}
+                                                                                                maxLength={13}
+                                                                                                className="p-2 border border-gray-300 rounded outline-blue-400 w-full"
+                                                                                        />
+                                                                                        {formik.touched.fieldStudy && formik.errors.fieldStudy && (
+                                                                                                <div className="text-red-600 text-sm mt-1">
+                                                                                                        {formik.errors.fieldStudy}
+                                                                                                </div>
+                                                                                        )}
+                                                                                </div>
+                                                                                {/* <div className="mb-4 sm:mr-2 w-full sm:w-1/3"> */}
+                                                                                <div className="mb-4 sm:mt-4 w-full sm:w-1/3">
+                                                                                        <label className="  text-[#535353] w-full font-medium">
+                                                                                                Graduation Date
+                                                                                        </label>
+
+                                                                                        <div className="mb-4 mt-2  w-full sm:w-full">
+                                                                                                <SingleSelectPlaceholder
+                                                                                                        selectedValue={selectedMonth}
+                                                                                                        onChange={handleMonthChange}
+                                                                                                        plac={"Month"}
+                                                                                                        widthMul={"100%"}
+                                                                                                />
+                                                                                                {formik.touched.month && formik.errors.month && (
+                                                                                                        <div className="text-red-600 text-sm mt-1">
+                                                                                                                {formik.errors.month}
+                                                                                                        </div>
+                                                                                                )}
+                                                                                        </div>
+                                                                                </div>
+                                                                                <div className="mb-4 sm:ml-2 sm:mt-8  w-full sm:w-1/3">
+                                                                                        <SingleSelectPlaceholder
+                                                                                                selectedValue={selectedYear}
+                                                                                                onChange={handleYearChange}
+                                                                                                plac={"Year"}
+                                                                                                widthMul={"100%"}
+                                                                                        />
+                                                                                        {formik.touched.year && formik.errors.year && (
+                                                                                                <div className="text-red-600 text-sm mt-1">
+                                                                                                        {formik.errors.year}
+                                                                                                </div>
+                                                                                        )}
+                                                                                </div>
+                                                                        </div>
+                                                                        <div>
+                                                                                <div className=" flex justify-between items-center text-center h-12">
+                                                                                        <p className=" text-center block text-[#535353] font-medium mb-2">Description</p>
+                                                                                        <section className=" flex mb-3">
+                                                                                                <div onClick={handleBoldText} className="border-solid border-2 w-8 flex justify-center h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
+                                                                                                        <FaBold color="#9b9b9b" />
+                                                                                                </div>
+                                                                                                <div className="border-solid border-2 w-8 flex justify-center h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
+                                                                                                        <FaUnderline color="#9b9b9b" />
+                                                                                                </div>
+                                                                                                <div className="border-solid border-2 w-8 flex justify-center h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
+                                                                                                        <FiItalic color="#9b9b9b" />
+                                                                                                </div>
+                                                                                                <div className="border-solid border-2 w-8 flex justify-center h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
+                                                                                                        <AiOutlineUnorderedList color="#9b9b9b" />
+                                                                                                </div>
+
+                                                                                        </section>
+                                                                                </div>
+
+                                                                                <textarea className=" w-full  h-56 border-solid border-2  outline-none rounded-sm p-1 resize-none" onSelect={handleTextSelection} value={decription} onChange={e => setDescription(e.target.value)} placeholder="Enter Edication Description"></textarea>
+                                                                        </div>
 
 
 
-                                                                      
-                                                                        
-                                                                       
+
+
                                                                         <Buttons />
                                                                 </form>
                                                         </div>
