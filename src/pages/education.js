@@ -10,28 +10,36 @@ import SingleSelectPlaceholder from "../componenets/dropdown";
 import SingleSelectPlaceholderMonth from "../componenets/monthselect";
 import { FaUnderline, FaBold } from "react-icons/fa"
 import { AiOutlineUnorderedList } from "react-icons/ai"
-import { FiItalic } from "react-icons/fi"
+import { FiItalic } from "react-icons/fi";
+
 import {
         AiFillDelete,
         AiOutlinePlusCircle,
 } from "react-icons/ai";
+import { Editor, EditorState, RichUtils , convertToRaw  } from 'draft-js';
+
 import FormHeader from "../componenets/formHeader";
 import { useState } from "react";
 const Education = () => {
-        const [boldText, setBoldText] = useState('');
-        const [selectionStart, setSelectionStart] = useState(0);
-        const [selectionEnd, setSelectionEnd] = useState(0);
-        const handleBoldText = () => {
-                if (selectionStart !== selectionEnd) {
-                        const selectedText = decription.substring(selectionStart, selectionEnd);
-                        const newText = decription.replace(selectedText, `<strong>${selectedText}</strong>`);
-                        setBoldText(newText);
+        const [editorState, setEditorState] = useState(EditorState.createEmpty());
+const [finalEditorValue , setFinalEditorValue] = useState("")
+        const onChange = (newEditorState) => {
+          setEditorState(newEditorState);
+          const currentContent = newEditorState.getCurrentContent();
+          setFinalEditorValue(currentContent.getPlainText());
+          const contentState = newEditorState.getCurrentContent();
+          const rawContentState = convertToRaw(contentState);
+          const text = rawContentState.blocks.map(block => block.text).join('\n');
+          console.log(text);
 
-                }
         };
-        const handleTextSelection = (e) => {
-                setSelectionEnd(e.target.selectionEnd);
+
+        const handleBoldClick = (typeChanging) => {
+          onChange(RichUtils.toggleInlineStyle(editorState, typeChanging));
+
         };
+       
+     
         const [selectedYear, setSelectedYear] = useState('');
         const [decription, setDescription] = useState("");
         console.log(decription);
@@ -111,11 +119,10 @@ const Education = () => {
         return (
                 <div>
                         <FormHeader />
-
-                        <div className="flex justify-between main-first-component ml-4">
+                        <div className="flex justify-between  main-first-component ml-4">
                                 <animated.div
                                         style={springProps}
-                                        className="w-full flex justify-center flex-row"
+                                        className=" w-full flex justify-center   flex-row"
                                 >
                                         <div>
                                                 <p className=" text-[36px] mt-[24px] font-bold font-['libre']">
@@ -355,23 +362,32 @@ const Education = () => {
                                                                                 <div className=" flex justify-between items-center text-center h-12">
                                                                                         <p className=" text-center block text-[#535353] font-medium mb-2">Description</p>
                                                                                         <section className=" flex mb-3">
-                                                                                                <div onClick={handleBoldText} className="border-solid border-2 w-8 flex justify-center h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
+                                                                                                <div 
+                                                                                                onClick={() => handleBoldClick("BOLD")}
+                                                                                                className="border-solid border-2 w-8 flex justify-center  h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
                                                                                                         <FaBold color="#9b9b9b" />
                                                                                                 </div>
-                                                                                                <div className="border-solid border-2 w-8 flex justify-center h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
+                                                                                                <div 
+                                                                                                  onClick={() => handleBoldClick("UNDERLINE")}
+                                                                                                className="border-solid border-2 w-8 flex justify-center h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
                                                                                                         <FaUnderline color="#9b9b9b" />
                                                                                                 </div>
-                                                                                                <div className="border-solid border-2 w-8 flex justify-center h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
+                                                                                                <div 
+                                                                                                 onClick={() => handleBoldClick("ITALIC")}
+                                                                                                className="border-solid border-2 w-8 flex justify-center h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
                                                                                                         <FiItalic color="#9b9b9b" />
                                                                                                 </div>
-                                                                                                <div className="border-solid border-2 w-8 flex justify-center h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
-                                                                                                        <AiOutlineUnorderedList color="#9b9b9b" />
-                                                                                                </div>
-
+                                                                                               
                                                                                         </section>
                                                                                 </div>
 
-                                                                                <textarea className=" w-full  h-56 border-solid border-2  outline-none rounded-sm p-1 resize-none" onSelect={handleTextSelection} value={decription} onChange={e => setDescription(e.target.value)} placeholder="Enter Edication Description"></textarea>
+                                                                                <div className=" break-all border border-gray-300 lg:w-[430px] sm:w-[430px] md:w-[430px] h-56 overflow-y-auto p-2 rounded">
+        <Editor
+          editorState={editorState}
+          onChange={onChange}
+         
+        />
+      </div>
                                                                         </div>
 
 
@@ -395,6 +411,7 @@ const Education = () => {
                                                         alt="resume image"
                                                 />
                                         </animated.div>
+
                                         <div className="flex h-full  object-contain">
                                                 <img
                                                         width="1299px"
