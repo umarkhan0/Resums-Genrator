@@ -5,44 +5,35 @@ import resumeImage from "../images/hero_resume_home_page_rn.webp";
 import Buttons from "../componenets/buttons";
 import { useNavigate, useLocation } from "react-router-dom";
 import ComboBox from "../componenets/seachSelect";
-import SelectSmall from "../componenets/dateselect";
 import SingleSelectPlaceholder from "../componenets/dropdown";
-import SingleSelectPlaceholderMonth from "../componenets/monthselect";
 import { FaUnderline, FaBold } from "react-icons/fa"
-import { AiOutlineUnorderedList } from "react-icons/ai"
 import { FiItalic } from "react-icons/fi";
-
+import { MdDoNotDisturbOnTotalSilence } from 'react-icons/md'
 import {
-        AiFillDelete,
         AiOutlinePlusCircle,
 } from "react-icons/ai";
-import { Editor, EditorState, RichUtils , convertToRaw  } from 'draft-js';
+import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
 
 import FormHeader from "../componenets/formHeader";
 import { useState } from "react";
 const Education = () => {
+        const location = useLocation();
+        const experienceEndInfo = location.state.data;
         const [editorState, setEditorState] = useState(EditorState.createEmpty());
-const [finalEditorValue , setFinalEditorValue] = useState("")
+        const [descriptionshowUnshow, setDescriptionShow] = useState(false)
+        const [storedValue, setStoredValue] = useState('');
         const onChange = (newEditorState) => {
-          setEditorState(newEditorState);
-          const currentContent = newEditorState.getCurrentContent();
-          setFinalEditorValue(currentContent.getPlainText());
-          const contentState = newEditorState.getCurrentContent();
-          const rawContentState = convertToRaw(contentState);
-          const text = rawContentState.blocks.map(block => block.text).join('\n');
-          console.log(text);
-
+                setEditorState(newEditorState);
+                const contentState = newEditorState.getCurrentContent();
+                const serializedContent = JSON.stringify(convertToRaw(contentState));
+                setStoredValue(serializedContent);
         };
-
         const handleBoldClick = (typeChanging) => {
-          onChange(RichUtils.toggleInlineStyle(editorState, typeChanging));
-
+                onChange(RichUtils.toggleInlineStyle(editorState, typeChanging));
         };
-       
-     
+
+
         const [selectedYear, setSelectedYear] = useState('');
-        const [decription, setDescription] = useState("");
-        console.log(decription);
         const handleYearChange = (value) => {
                 setSelectedYear(value);
         };
@@ -70,14 +61,19 @@ const [finalEditorValue , setFinalEditorValue] = useState("")
                         fieldStudy: "",
                         Degree: "",
                         country: "",
-
+                        description: "",
 
                         year: "",
                         month: ""
                 },
                 onSubmit: (values) => {
+                        values.description = storedValue
                         console.log(values);
-                        // navigate("/experience", { state: { data: values } });
+                        const education = values
+                        let contect = experienceEndInfo.contectUs;
+                        let experiecePage = experienceEndInfo.experienceAdded;
+                        const experiencePlusContect = Object.assign({}, { contect }, { experiecePage }, { education });
+                        navigate("/education/language", { state: { data: experiencePlusContect } });
 
 
                 },
@@ -358,38 +354,54 @@ const [finalEditorValue , setFinalEditorValue] = useState("")
                                                                                         )}
                                                                                 </div>
                                                                         </div>
-                                                                        <div>
-                                                                                <div className=" flex justify-between items-center text-center h-12">
-                                                                                        <p className=" text-center block text-[#535353] font-medium mb-2">Description</p>
-                                                                                        <section className=" flex mb-3">
-                                                                                                <div 
-                                                                                                onClick={() => handleBoldClick("BOLD")}
-                                                                                                className="border-solid border-2 w-8 flex justify-center  h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
-                                                                                                        <FaBold color="#9b9b9b" />
-                                                                                                </div>
-                                                                                                <div 
-                                                                                                  onClick={() => handleBoldClick("UNDERLINE")}
-                                                                                                className="border-solid border-2 w-8 flex justify-center h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
-                                                                                                        <FaUnderline color="#9b9b9b" />
-                                                                                                </div>
-                                                                                                <div 
-                                                                                                 onClick={() => handleBoldClick("ITALIC")}
-                                                                                                className="border-solid border-2 w-8 flex justify-center h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
-                                                                                                        <FiItalic color="#9b9b9b" />
-                                                                                                </div>
-                                                                                               
-                                                                                        </section>
+
+
+                                                                        {!descriptionshowUnshow ?
+                                                                                <p className=" flex items-center mt-1 cursor-pointer text-[#03acbb] active:underline" onClick={() => setDescriptionShow(true)}>
+                                                                                        <AiOutlinePlusCircle color="#03acbb" />
+
+                                                                                        Add description or special awards</p>
+
+                                                                                :
+                                                                                <p className=" flex items-center mt-1 cursor-pointer text-[#03acbb] active:underline" onClick={() => setDescriptionShow(false)}>
+                                                                                        <MdDoNotDisturbOnTotalSilence color="#03acbb" />
+
+                                                                                        Don’t show the description</p>
+                                                                        }
+                                                                        {
+                                                                                descriptionshowUnshow &&
+                                                                                <div>
+                                                                                        <div className=" flex justify-between items-center text-center h-12">
+                                                                                                <p className=" text-center block text-[#535353] font-medium mb-2">Description</p>
+                                                                                                <section className=" flex mb-3">
+                                                                                                        <div
+                                                                                                                onClick={() => handleBoldClick("BOLD")}
+                                                                                                                className="border-solid border-2 w-8 flex justify-center  h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
+                                                                                                                <FaBold color="#9b9b9b" />
+                                                                                                        </div>
+                                                                                                        <div
+                                                                                                                onClick={() => handleBoldClick("UNDERLINE")}
+                                                                                                                className="border-solid border-2 w-8 flex justify-center h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
+                                                                                                                <FaUnderline color="#9b9b9b" />
+                                                                                                        </div>
+                                                                                                        <div
+                                                                                                                onClick={() => handleBoldClick("ITALIC")}
+                                                                                                                className="border-solid border-2 w-8 flex justify-center h-8 items-center  mr-1 hover:shadow-md cursor-pointer rounded-sm ease-in duration-300">
+                                                                                                                <FiItalic color="#9b9b9b" />
+                                                                                                        </div>
+
+                                                                                                </section>
+                                                                                        </div>
+
+                                                                                        <div className=" break-all border border-gray-300 lg:w-[430px] sm:w-[430px] md:w-[430px] h-56 overflow-y-auto p-2 rounded">
+                                                                                                <Editor
+                                                                                                        editorState={editorState}
+                                                                                                        onChange={onChange}
+
+                                                                                                />
+                                                                                        </div>
                                                                                 </div>
-
-                                                                                <div className=" break-all border border-gray-300 lg:w-[430px] sm:w-[430px] md:w-[430px] h-56 overflow-y-auto p-2 rounded">
-        <Editor
-          editorState={editorState}
-          onChange={onChange}
-         
-        />
-      </div>
-                                                                        </div>
-
+                                                                        }
 
 
 

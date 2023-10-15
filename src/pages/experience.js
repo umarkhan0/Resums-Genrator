@@ -137,8 +137,6 @@ if(nextpage){
 
 }
 
-// console.log(experienceAdded);
-
   return (
     <div>
       <FormHeader />

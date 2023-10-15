@@ -27,7 +27,6 @@ const names = [
   (cruntDate - 7).toString(),
   (cruntDate - 8).toString(),
   (cruntDate - 9).toString(),
-
 ];
 
 function getStyles(name, personName, theme) {
