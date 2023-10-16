@@ -6,28 +6,18 @@ import { useNavigate, useLocation } from "react-router-dom";
 import BasicSelect from "../componenets/simpleDropDown";
 import {
         AiOutlinePlusCircle,
-        AiOutlineExclamationCircle
+        AiOutlineExclamationCircle,
+        AiFillDelete
 } from "react-icons/ai";
-import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
-
 import FormHeader from "../componenets/formHeader";
 import { useState } from "react";
-import { SetMeal } from "@mui/icons-material";
+import Buttons from "../componenets/buttons";
 const Language = () => {
         const location = useLocation();
-        const [moreLanguage, setMoreLanguage] = useState([1]);
+        const [moreLanguage, setMoreLanguage] = useState(["setlanguage1"]);
 
         const experienceEndInfo = location.state.data;
-        const [editorState, setEditorState] = useState(EditorState.createEmpty());
-        const [storedValue, setStoredValue] = useState('');
-
-        const onChange = (newEditorState) => {
-                setEditorState(newEditorState);
-                const contentState = newEditorState.getCurrentContent();
-                const serializedContent = JSON.stringify(convertToRaw(contentState));
-                setStoredValue(serializedContent);
-        };
-
+       
         const navigate = useNavigate();
         const springProps = useSpring({
                 from: { transform: "translateY(20%)" },
@@ -36,24 +26,17 @@ const Language = () => {
         });
         const formik = useFormik({
                 initialValues: {
-                        schoolName: "",
-                        cityTown: "",
-                        city: "",
-                        fieldStudy: "",
-                        Degree: "",
-                        country: "",
-                        description: "",
-                        year: "",
-                        month: ""
+                       language1: "",
+                       language: "",
+                       language: "",
+                       language4: ""
                 },
                 onSubmit: (values) => {
-                        values.description = storedValue
+                      
                         console.log(values);
-                        const education = values
-                        let contect = experienceEndInfo.contectUs;
-                        let experiecePage = experienceEndInfo.experienceAdded;
-                        const experiencePlusContect = Object.assign({}, { contect }, { experiecePage }, { education });
-                        navigate("/education/language", { state: { data: experiencePlusContect } });
+                        
+                        // const experiencePlusContect = Object.assign({}, { contect }, { experiecePage }, { education });
+                        // navigate("/education/language", { state: { data: experiencePlusContect } });
 
 
                 },
@@ -62,6 +45,13 @@ const Language = () => {
         });
         const selected = (value) => {
                 console.log(value);
+        }
+        const deleteOption = () => {
+                if (moreLanguage.length > 1) {
+                        const updatedLanguages = [...moreLanguage];
+                        updatedLanguages.pop(); // Remove the last element
+                        setMoreLanguage(updatedLanguages);
+                }
         }
         return (
                 <>
@@ -82,55 +72,45 @@ const Language = () => {
 
 
                                                 {
-                                                        moreLanguage.map((v , i) => (
+                                                        moreLanguage.map((v, i) => (
+                                                                
+                                                                        // console.log(v)
+                                                                
                                                                 <div key={i} className="flex justify-between mt-4 items-center ">
                                                                         <div className=" mr-2 w-[230px]">
                                                                                 <label
                                                                                         htmlFor="cityTown"
                                                                                         className="block text-[#535353] mb-2"
                                                                                 >
-                                                                                        Language <span>{v}</span>
+                                                                                        Language <span>{i + 1}</span>
                                                                                 </label>
                                                                                 <input
                                                                                         type="text"
                                                                                         id="cityTown"
                                                                                         name="cityTown"
                                                                                         placeholder="Urdu"
-                                                                                        onChange={(
-                                                                                                e,
-                                                                                        ) => {
-                                                                                                if (
-                                                                                                        e
-                                                                                                                .target
-                                                                                                                .value
-                                                                                                                .length <=
-                                                                                                        15
-                                                                                                ) {
-                                                                                                        formik.handleChange(
-                                                                                                                e,
-                                                                                                        );
-                                                                                                }
-                                                                                        }}
+                                                                                        
                                                                                         onBlur={
                                                                                                 formik.handleBlur
                                                                                         }
-                                                                                        value={
-                                                                                                formik
-                                                                                                        .values
-                                                                                                        .cityTown
-                                                                                        }
-                                                                                        maxLength={
-                                                                                                13
-                                                                                        }
+                                                                                        // onChange={(e) => v(e.target.value)}
+                                                                                       
                                                                                         className=" p-2 border border-gray-300 rounded outline-blue-400 w-full "
                                                                                 />
 
                                                                         </div>
                                                                         <div>
                                                                                 <div
-                                                                                        className="flex items-center text-[#535353] mb-2"
+                                                                                        className="flex items-center justify-between text-[#535353] mb-2"
                                                                                 >
-                                                                                        Proficiency <AiOutlineExclamationCircle color="#03acbb" className="mt-1 ml-1" />
+                                                                                        <span className="flex"> Proficiency <AiOutlineExclamationCircle color="#03acbb" className="mt-1 ml-1" /></span>
+                                                                                        {
+                                                                                                moreLanguage.length !== 1 &&
+                                                                                                        <span>
+                                                                                                                <AiFillDelete className=" cursor-pointer" onClick={deleteOption} />
+                                                                                                        </span>
+                                                                                                        
+                                                                                        }
                                                                                 </div>
                                                                                 <BasicSelect onChange={selected} />
                                                                         </div>
@@ -140,12 +120,14 @@ const Language = () => {
                                                 {moreLanguage.length < 4 ?
                                                         <div className=" flex items-center mt-2 cursor-pointer text-[#03acbb] font-extrabold text-[13px]"
                                                                 onClick={() => {
-                                                                        setMoreLanguage([...moreLanguage, moreLanguage.slice().pop() + 1])
+                                                                        setMoreLanguage([...moreLanguage, moreLanguage.length + 1])
                                                                 }}
                                                         > <AiOutlinePlusCircle /> Add another Language</div>
                                                         :
                                                         console.log()
                                                 }
+                  <Buttons />
+
 
                                         </div>
                                 </animated.div>
@@ -170,6 +152,7 @@ const Language = () => {
                                         </div>
                                 </div>
                         </div>
+                        <Footer />
                 </>
         )
 };

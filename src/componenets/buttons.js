@@ -2,7 +2,7 @@ import { IoArrowBackSharp } from "react-icons/io5";
 const Buttons = () =>{
 
     return(
-        <div className="mt-6 mb-4 flex ">
+        <div className="mt-6 mb-14 flex ">
                     <button className=" bg-[#f6f6f6] p-3 cursor-pointer mr-3" onClick={ () => window.history.back()
                     } >
                       <IoArrowBackSharp color="#000" size={"25px"}/>

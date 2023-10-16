@@ -23,7 +23,7 @@ const FormHeader = () =>{
             }
                {pathWindow == "/education" || pathWindow === "/education/language" ? <p className='font-semibold ml-3  font-["libre"] text-[16px]'>
                     3.Education  <span className=' ml-3'> &gt; </span>
-                </p>: <p className=' ml-3  font-["libre"]   text-[16px]'>
+                </p>: <p className=' ml-3  font-["libre"] opacity-40  text-[16px]'>
                     3.Education  <span className=' ml-3'> &gt; </span>
                 
                 </p>}
