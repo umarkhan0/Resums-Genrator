@@ -14,7 +14,12 @@ import { useState } from "react";
 import Buttons from "../componenets/buttons";
 const Language = () => {
         const location = useLocation();
-        const [moreLanguage, setMoreLanguage] = useState(["setlanguage1"]);
+const [language1 , setLanguage1] = useState("");
+const [language2 , setLanguage2] = useState("");
+const [language3 , setLanguage3] = useState("");
+const [proficiency1 , setProfency1] = useState("");
+const [proficiency2 , setProfency2] = useState("");
+const [proficiency3 , setProfency3] = useState("");
 
         const experienceEndInfo = location.state.data;
        
@@ -27,32 +32,37 @@ const Language = () => {
         const formik = useFormik({
                 initialValues: {
                        language1: "",
-                       language: "",
-                       language: "",
-                       language4: ""
+                       proficiency1: "",
+                       language2: "",
+                       proficiency2: "",
+                       language3: "",
+                       proficiency3: "",
                 },
                 onSubmit: (values) => {
-                      
+                      values.language1 = language1;
+                      values.proficiency1 = proficiency1;
+                      values.language2 = language2
+                      values.proficiency2 = proficiency2
+                      values.language3 = language3;
+                      values.proficiency3 = proficiency3
                         console.log(values);
                         
-                        // const experiencePlusContect = Object.assign({}, { contect }, { experiecePage }, { education });
-                        // navigate("/education/language", { state: { data: experiencePlusContect } });
+                       
 
+let language = values;
+let contect = experienceEndInfo.contect;
+let experiecePage = experienceEndInfo.experiecePage;
+let education = experienceEndInfo.education;
 
+ const experiencePlusContect = Object.assign({}, { contect }, { experiecePage }, { education } , {language});
+                        navigate("/skills", { state: { data: experiencePlusContect } });
                 },
 
 
         });
-        const selected = (value) => {
-                console.log(value);
-        }
-        const deleteOption = () => {
-                if (moreLanguage.length > 1) {
-                        const updatedLanguages = [...moreLanguage];
-                        updatedLanguages.pop(); // Remove the last element
-                        setMoreLanguage(updatedLanguages);
-                }
-        }
+
+       
+        
         return (
                 <>
                         <FormHeader />
@@ -71,62 +81,151 @@ const Language = () => {
 
 
 
-                                                {
-                                                        moreLanguage.map((v, i) => (
+                                              
                                                                 
-                                                                        // console.log(v)
-                                                                
-                                                                <div key={i} className="flex justify-between mt-4 items-center ">
-                                                                        <div className=" mr-2 w-[230px]">
+                                                                     
+                                                <form onSubmit={formik.handleSubmit}>
+                                                                <div  className="flex justify-between flex-wrap   mt-4 items-center ">
+                                                                        <div className=" mr-2 w-[230px] languageType">
                                                                                 <label
-                                                                                        htmlFor="cityTown"
+                                                                                        htmlFor="lan1"
                                                                                         className="block text-[#535353] mb-2"
                                                                                 >
-                                                                                        Language <span>{i + 1}</span>
+                                                                                        Language 1
                                                                                 </label>
                                                                                 <input
                                                                                         type="text"
-                                                                                        id="cityTown"
-                                                                                        name="cityTown"
+                                                                                        id="lan1"
+                                                                                        name="language1"
                                                                                         placeholder="Urdu"
-                                                                                        
-                                                                                        onBlur={
-                                                                                                formik.handleBlur
-                                                                                        }
-                                                                                        // onChange={(e) => v(e.target.value)}
+                                                                                        value={language1}
+                                                                                       
+                                                                                        onChange={(e) => setLanguage1(e.target.value)}
                                                                                        
                                                                                         className=" p-2 border border-gray-300 rounded outline-blue-400 w-full "
                                                                                 />
 
                                                                         </div>
-                                                                        <div>
+                                                                        <div className="  languageType mr-1">
                                                                                 <div
-                                                                                        className="flex items-center justify-between text-[#535353] mb-2"
+                                                                                        className="flex items-center justify-between  text-[#535353]  mb-2"
                                                                                 >
                                                                                         <span className="flex"> Proficiency <AiOutlineExclamationCircle color="#03acbb" className="mt-1 ml-1" /></span>
-                                                                                        {
-                                                                                                moreLanguage.length !== 1 &&
-                                                                                                        <span>
-                                                                                                                <AiFillDelete className=" cursor-pointer" onClick={deleteOption} />
-                                                                                                        </span>
+                                                                                        
                                                                                                         
-                                                                                        }
+                                                                                                        
+                                                                                        
                                                                                 </div>
-                                                                                <BasicSelect onChange={selected} />
+                                                                                <BasicSelect onChange={(e) => setProfency1(e)}/>
                                                                         </div>
                                                                 </div>
-                                                        ))
-                                                }
-                                                {moreLanguage.length < 4 ?
-                                                        <div className=" flex items-center mt-2 cursor-pointer text-[#03acbb] font-extrabold text-[13px]"
-                                                                onClick={() => {
-                                                                        setMoreLanguage([...moreLanguage, moreLanguage.length + 1])
-                                                                }}
+                                                                {language2 &&
+                                                                         <div  className="flex justify-between flex-wrap   mt-4 items-center ">
+                                                                         <div className=" mr-2 w-[230px] languageType">
+                                                                                 <label
+                                                                                         htmlFor="lan1"
+                                                                                         className="block text-[#535353] mb-2"
+                                                                                 >
+                                                                                         Language 2
+                                                                                 </label>
+                                                                                 <input
+                                                                                         type="text"
+                                                                                         id="lan1"
+                                                                                         name="lan1"
+                                                                                         placeholder="Urdu"
+                                                                                         onBlur={
+                                                                                                 formik.handleBlur
+                                                                                         }
+                                                                                        onChange={(e) => setLanguage2(e.target.value)}
+
+                                                                                        
+                                                                                         className=" p-2 border border-gray-300 rounded outline-blue-400 w-full "
+                                                                                 />
+ 
+                                                                         </div>
+                                                                         <div className="  languageType mr-1">
+                                                                                 <div
+                                                                                         className="flex items-center justify-between  text-[#535353]  mb-2"
+                                                                                 >
+                                                                                         <span className="flex"> Proficiency <AiOutlineExclamationCircle color="#03acbb" className="mt-1 ml-1" /></span>
+                                                                                         
+                                                                                                         <span>
+                                                                                                                 <AiFillDelete className=" cursor-pointer"  onClick={() => {
+                                                                                                                        language3  ? 
+                                                                                                                        setLanguage3(false)
+                                                                                                                        :
+                                                                                                                        setLanguage2(false)
+                                                                                                                 }} />
+                                                                                                         </span>
+                                                                                                         
+                                                                                         
+                                                                                 </div>
+                                                                                 <BasicSelect onChange={(e) => setProfency2(e)}/>
+                                                                         </div>
+                                                                 </div>
+                                                                }
+                                                                 {language3 &&
+                                                                         <div  className="flex justify-between flex-wrap   mt-4 items-center ">
+                                                                         <div className=" mr-2 w-[230px] languageType">
+                                                                                 <label
+                                                                                         htmlFor="cityTown"
+                                                                                         className="block text-[#535353] mb-2"
+                                                                                 >
+                                                                                         Language 3
+                                                                                 </label>
+                                                                                 <input
+                                                                                         type="text"
+                                                                                         id="cityTown"
+                                                                                         name="cityTown"
+                                                                                         placeholder="Urdu"
+                                                                                         
+                                                                                        
+                                                                                         onChange={(e) => setLanguage3(e.target.value)}
+
+                                                                                        
+                                                                                         className=" p-2 border border-gray-300 rounded outline-blue-400 w-full "
+                                                                                 />
+ 
+                                                                         </div>
+                                                                         <div className="  languageType mr-1">
+                                                                                 <div
+                                                                                         className="flex items-center justify-between  text-[#535353]  mb-2"
+                                                                                 >
+                                                                                         <span className="flex"> Proficiency <AiOutlineExclamationCircle color="#03acbb" className="mt-1 ml-1" /></span>
+                                                                                         
+                                                                                                         <span>
+                                                                                                                 <AiFillDelete className=" cursor-pointer" onClick={() => {
+                                                                                                                        setLanguage3(false)
+                                                                                                                       
+                                                                                                                 }}  />
+                                                                                                         </span>
+                                                                                                         
+                                                                                         
+                                                                                 </div>
+                                                                                 <BasicSelect onChange={(e) => setProfency3(e)}/>
+                                                                         </div>
+                                                                 </div>
+                                                                }
+                                                               
+                                                        
+                                                
+                                               
+                                                   {!language3 &&    <div onClick={() =>{ 
+                                                               if(!language2){
+                                                                setLanguage2(true);
+                                                               }else{
+                                                                setLanguage3(true);
+                                                               };
+                                                              
+                                                               
+                                                        
+                                                        
+                                                        }} className=" flex items-center mt-2 cursor-pointer text-[#03acbb] font-extrabold text-[13px]"
+                                                              
                                                         > <AiOutlinePlusCircle /> Add another Language</div>
-                                                        :
-                                                        console.log()
-                                                }
+                                                      } 
                   <Buttons />
+                  </form>              
 
 
                                         </div>

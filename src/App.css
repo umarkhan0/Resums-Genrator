@@ -41,3 +41,8 @@
 
 
 
+@media screen and (max-width: 496px) {
+  .languageType{
+    width: 100%;
+  }
+}
