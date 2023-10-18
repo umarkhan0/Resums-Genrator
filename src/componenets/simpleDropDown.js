@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export default function BasicSelect({ onChange }) {
+export default function BasicSelect({ onChange , value }) {
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
@@ -19,7 +19,7 @@ export default function BasicSelect({ onChange }) {
       <FormControl fullWidth>
         <Select
           displayEmpty
-          value={age}
+          value={value}
           onChange={handleChange}
           inputProps={{ 'aria-label': 'Without label' }}
           style={{ height: "41px" }}
