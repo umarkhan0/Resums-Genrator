@@ -27,7 +27,7 @@ const Experience = () => {
   const [countryValue, setCountryvalue] = useState('');
   const [lastselectedYear, setlastSelectedYear] = useState('');
   const [isChecked, setIsChecked] = useState(false);
-
+  const [isAnimating, setIsAnimating] = useState(false);
   const handleYearChange = (value) => {
     setSelectedYear(value);
   };
@@ -46,8 +46,14 @@ const Experience = () => {
     from: { transform: 'translateY(20%)' },
     to: { transform: 'translateY(0%)' },
     config: { duration: 1000 },
+    reset: isAnimating,
   });
-
+  
+  
+  const handleRegenerateAnimation = () => {
+    setIsAnimating(!isAnimating); // Toggle isAnimating state
+  };
+  
  const formik = useFormik({
   initialValues: {
     JobTitle: '',
@@ -89,6 +95,8 @@ const Experience = () => {
         setlastSelectedYear("");
         setCountryvalue("");
         setIsChecked(false);
+        console.log("yyyyy");
+        handleRegenerateAnimation()
       }
 
       console.log(experienceAdded);
@@ -107,12 +115,6 @@ const Experience = () => {
 
   validate: (values) => {
     const errors = {};
-    !JobTitleValuefirst ? (errors.JobTitle = 'Can we get your Title?') : console.log();
-    !companyValue ? (errors.Company = 'Company is required') : console.log();
-    !cityTown ? (errors.CityTown = 'City is required') : console.log();
-    !countryValue ? (errors.country = 'Country is required') : console.log();
-    selectedYear == "" ? (errors.year = 'Year is required') : console.log();
-    !isChecked && lastselectedYear == "" ? (errors.lastYear = 'Last Year is required') : console.log();
 
 
     return errors;
@@ -134,13 +136,11 @@ if(experienceAdded.length == 2){
 if(nextpage){
   const experiencePlusContect = Object.assign({} , {contectUs},{experienceAdded});
    navigate("/education", { state: { data: experiencePlusContect} });
-
 }
 
   return (
     <div>
       <FormHeader />
-
       <div className="flex justify-between main-first-component ml-4">
         <animated.div style={springProps} className="w-full flex justify-center flex-row">
           <div>
@@ -165,9 +165,7 @@ if(nextpage){
                       value={JobTitleValuefirst}
                       className="p-2 border border-gray-300 rounded w-full outline-blue-400"
                     />
-                    {!JobTitleValuefirst && !JobTitleValuefirst && (
-                      <div className="text-red-600 text-sm mt-1">{formik.errors.JobTitle}</div>
-                    )}
+                   
                   </div>
 
                   <div className="mb-4">
@@ -186,9 +184,7 @@ if(nextpage){
                       value={companyValue}
                       className="p-2 border border-gray-300 rounded w-full outline-blue-400"
                     />
-                    {!companyValue && !companyValue && (
-                      <div className="text-red-600 text-sm mt-1">{formik.errors.Company}</div>
-                    )}
+                   
                   </div>
 
                   <div className="flex justify-around items-center">
@@ -209,9 +205,7 @@ if(nextpage){
                         maxLength={13}
                         className="p-2 border border-gray-300 rounded outline-blue-400 w-full"
                       />
-                      {!cityTown && !cityTown && (
-                        <div className="text-red-600 text-sm mt-1">{formik.errors.CityTown}</div>
-                      )}
+                     
                     </div>
 
                     <div className="mb-4">
@@ -234,9 +228,7 @@ if(nextpage){
                         className="p-2 border border-gray-300 rounded outline-blue-400 w-full"
                       />
 
-                      {!countryValue && !countryValue && (
-                        <div className="text-red-600 text-sm mt-1">{formik.errors.country}</div>
-                      )}
+                     
                     </div>
                   </div>
                   <div className='mb-4'>
@@ -256,9 +248,7 @@ if(nextpage){
                         End Date
                       </label>
                       <SingleSelectPlaceholder selectedValue={lastselectedYear} isChecked={isChecked} onChange={handlelastYearChange} plac={"End Date"} widthMul={"100%"} />
-                      {formik.touched.lastYear && formik.errors.lastYear && (
-                        <div className="text-red-600 text-sm mt-1">{formik.errors.lastYear}</div>
-                      )}</div>
+                      </div>
                   }
 
                   <FormGroup>
@@ -287,6 +277,7 @@ if(nextpage){
           </div>
         </div>
       </div>
+      
       <Footer />
     </div>
   );

@@ -57,7 +57,7 @@ const Education = () => {
                 initialValues: {
                         schoolName: "",
                         cityTown: "",
-                        city: "",
+                       
                         fieldStudy: "",
                         Degree: "",
                         country: "",
@@ -68,13 +68,12 @@ const Education = () => {
                 },
                 onSubmit: (values) => {
                         values.description = storedValue
-                        console.log(values);
                         const education = values
                         let contect = experienceEndInfo.contectUs;
                         let experiecePage = experienceEndInfo.experienceAdded;
                         const experiencePlusContect = Object.assign({}, { contect }, { experiecePage }, { education });
                         navigate("/education/language", { state: { data: experiencePlusContect } });
-
+console.log(experiencePlusContect);
 
                 },
                 validate: (values) => {
@@ -82,27 +81,13 @@ const Education = () => {
                         values.Degree = dgreeValue;
                         values.year = selectedYear;
                         values.month = selectedMonth;
-                        if (!values.schoolName) {
-                                errors.schoolName = "Can we get your name?";
-                        }
-                        if (!values.year) {
-                                errors.year = "Can we get your name?";
-                        }
-                        if (!values.month) {
-                                errors.month = "Can we get your name?";
-                        }
-                        if (!values.fieldStudy) {
-                                errors.fieldStudy = "Can we get your name?";
-                        }
-                        if (!values.Degree) {
-                                errors.Degree = "Please enter degree";
-                        }
-                        if (!values.country) {
-                                errors.country = "Country is required";
-                        }
-                        if (!values.cityTown) {
-                                errors.cityTown = "CityTown is required";
-                        }
+                        
+                        
+                       
+                      
+                        
+                        
+                       
 
 
 
@@ -159,20 +144,7 @@ const Education = () => {
                                                                                         }
                                                                                         className=" p-2 border border-gray-300 rounded w-full outline-blue-400"
                                                                                 />
-                                                                                {formik
-                                                                                        .touched
-                                                                                        .schoolName &&
-                                                                                        formik
-                                                                                                .errors
-                                                                                                .schoolName && (
-                                                                                                <div className="text-red-600 text-sm mt-1">
-                                                                                                        {
-                                                                                                                formik
-                                                                                                                        .errors
-                                                                                                                        .schoolName
-                                                                                                        }
-                                                                                                </div>
-                                                                                        )}
+                                                                                
                                                                         </div>
                                                                         <div className="flex justify-between items-center">
                                                                                 <div className="mb-4">
@@ -215,20 +187,7 @@ const Education = () => {
                                                                                                 }
                                                                                                 className=" p-2 border border-gray-300 rounded outline-blue-400 w-full "
                                                                                         />
-                                                                                        {formik
-                                                                                                .touched
-                                                                                                .cityTown &&
-                                                                                                formik
-                                                                                                        .errors
-                                                                                                        .cityTown && (
-                                                                                                        <div className="text-red-600 text-sm mt-1">
-                                                                                                                {
-                                                                                                                        formik
-                                                                                                                                .errors
-                                                                                                                                .phone
-                                                                                                                }
-                                                                                                        </div>
-                                                                                                )}
+                                                                                      
                                                                                 </div>
 
                                                                                 <div className="mb-4">
@@ -256,39 +215,13 @@ const Education = () => {
                                                                                                 }
                                                                                                 className=" p-2 border border-gray-300 rounded w-full outline-blue-400"
                                                                                         />
-                                                                                        {formik
-                                                                                                .touched
-                                                                                                .country &&
-                                                                                                formik
-                                                                                                        .errors
-                                                                                                        .country && (
-                                                                                                        <div className="text-red-600 text-sm mt-1">
-                                                                                                                {
-                                                                                                                        formik
-                                                                                                                                .errors
-                                                                                                                                .country
-                                                                                                                }
-                                                                                                        </div>
-                                                                                                )}
+                                                                                        
                                                                                 </div>
 
                                                                         </div>
 
                                                                         <ComboBox onSelectionChange={handleSelectionChange} />
-                                                                        {formik
-                                                                                .touched
-                                                                                .Degree &&
-                                                                                formik
-                                                                                        .errors
-                                                                                        .Degree && (
-                                                                                        <div className="text-red-600 text-sm mt-1">
-                                                                                                {
-                                                                                                        formik
-                                                                                                                .errors
-                                                                                                                .Degree
-                                                                                                }
-                                                                                        </div>
-                                                                                )}
+                                                                        
 
 
 
@@ -314,11 +247,7 @@ const Education = () => {
                                                                                                 maxLength={13}
                                                                                                 className="p-2 border border-gray-300 rounded outline-blue-400 w-full"
                                                                                         />
-                                                                                        {formik.touched.fieldStudy && formik.errors.fieldStudy && (
-                                                                                                <div className="text-red-600 text-sm mt-1">
-                                                                                                        {formik.errors.fieldStudy}
-                                                                                                </div>
-                                                                                        )}
+                                                                                        
                                                                                 </div>
                                                                                 {/* <div className="mb-4 sm:mr-2 w-full sm:w-1/3"> */}
                                                                                 <div className="mb-4 sm:mt-4 w-full sm:w-1/3">
@@ -333,14 +262,10 @@ const Education = () => {
                                                                                                         plac={"Month"}
                                                                                                         widthMul={"100%"}
                                                                                                 />
-                                                                                                {formik.touched.month && formik.errors.month && (
-                                                                                                        <div className="text-red-600 text-sm mt-1">
-                                                                                                                {formik.errors.month}
-                                                                                                        </div>
-                                                                                                )}
+                                                                                                
                                                                                         </div>
                                                                                 </div>
-                                                                                <div className="mb-4 sm:ml-2 sm:mt-8  w-full sm:w-1/3">
+                                                                                <div className="mb-4 sm:ml-2 sm:mt-7   w-full sm:w-1/3">
                                                                                         <SingleSelectPlaceholder
                                                                                                 selectedValue={selectedYear}
                                                                                                 onChange={handleYearChange}

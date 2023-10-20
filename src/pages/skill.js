@@ -6,6 +6,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import BasicSelect from "../componenets/simpleDropDown";
 import {LuArrowDownUp} from 'react-icons/lu';
 import React from 'react';
+import Drag from "../componenets/drag";
 import Draggable from 'react-draggable';
 import {
         AiOutlinePlusCircle,
@@ -65,7 +66,7 @@ const Skills = () => {
                     <>
                      <div>
         <h1>Mouse se element ko drag karein</h1>
-        <Draggable>
+        {/* <Draggable>
           <div
             style={{
               width: 100,
@@ -79,7 +80,7 @@ const Skills = () => {
           >
             Drag me!
           </div>
-        </Draggable>
+        </Draggable> */}
       </div>
                             <FormHeader />
                             <div className="flex justify-between  main-first-component ml-4">
@@ -103,7 +104,8 @@ const Skills = () => {
                                                     <form onSubmit={formik.handleSubmit}>
                                                                   
                                                                    
-                                                    <div className="mb-4">
+                                                  <Draggable>
+                                                    <div className="mb-4 w-full h-full">
                                                                                 <label
                                                                                         htmlFor="schoolName"
                                                                                         className="block text-[#535353] font-medium mb-2"
@@ -146,7 +148,7 @@ const Skills = () => {
                                                                                         )}
                                                                                         </div>
                                                                         </div>       
-                                                            
+                                                            </Draggable>
                                                     
                                                    
                                                        {!language3 &&    <div onClick={() =>{ 
@@ -163,6 +165,7 @@ const Skills = () => {
                                                                   
                                                             > <AiOutlinePlusCircle /> Add another Language</div>
                                                           } 
+                                                          
                       <Buttons />
                       </form>              
     
@@ -191,6 +194,7 @@ const Skills = () => {
                                     </div>
                             </div>
                             <Footer />
+                            <Drag />
                     </>
     );
 };

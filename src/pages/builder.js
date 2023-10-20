@@ -41,16 +41,7 @@ const BuilderForm = () => {
                         if (!values.name) {
                                 errors.name = "Can we get your name?";
                         }
-                        if (!values.country) {
-                                errors.country = "Country is required";
-                        }
-                        if (!values.city) {
-                                errors.city = "City is required";
-                        }
-                        if (!values.phone) {
-                                errors.phone = "phone is required";
-                        }
-
+                        
                         if (!values.email) {
                                 errors.email = "Required";
                         } else if (
@@ -96,7 +87,7 @@ const BuilderForm = () => {
                                                                                         htmlFor="name"
                                                                                         className="block text-[#535353] font-medium mb-2"
                                                                                 >
-                                                                                        Name
+                                                                                        Name*
                                                                                 </label>
                                                                                 <input
                                                                                         type="text"
@@ -157,20 +148,7 @@ const BuilderForm = () => {
                                                                                         }
                                                                                         className=" p-2 border border-gray-300 rounded w-full outline-blue-400"
                                                                                 />
-                                                                                {formik
-                                                                                        .touched
-                                                                                        .city &&
-                                                                                        formik
-                                                                                                .errors
-                                                                                                .city && (
-                                                                                                <div className="text-red-600 text-sm mt-1">
-                                                                                                        {
-                                                                                                                formik
-                                                                                                                        .errors
-                                                                                                                        .city
-                                                                                                        }
-                                                                                                </div>
-                                                                                        )}
+                                                                                
                                                                         </div>
                                                                         <div className="mb-4">
                                                                                 <label
@@ -197,20 +175,7 @@ const BuilderForm = () => {
                                                                                         }
                                                                                         className=" p-2 border border-gray-300 rounded w-full outline-blue-400"
                                                                                 />
-                                                                                {formik
-                                                                                        .touched
-                                                                                        .country &&
-                                                                                        formik
-                                                                                                .errors
-                                                                                                .country && (
-                                                                                                <div className="text-red-600 text-sm mt-1">
-                                                                                                        {
-                                                                                                                formik
-                                                                                                                        .errors
-                                                                                                                        .country
-                                                                                                        }
-                                                                                                </div>
-                                                                                        )}
+                                                                               
                                                                         </div>
                                                                         <div className="flex justify-between items-center">
                                                                                 <div className="mb-4">
@@ -254,27 +219,14 @@ const BuilderForm = () => {
                                                                                                 }
                                                                                                 className=" p-2 border border-gray-300 rounded outline-blue-400 w-full "
                                                                                         />
-                                                                                        {formik
-                                                                                                .touched
-                                                                                                .phone &&
-                                                                                                formik
-                                                                                                        .errors
-                                                                                                        .phone && (
-                                                                                                        <div className="text-red-600 text-sm mt-1">
-                                                                                                                {
-                                                                                                                        formik
-                                                                                                                                .errors
-                                                                                                                                .phone
-                                                                                                                }
-                                                                                                        </div>
-                                                                                                )}
+                                                                                      
                                                                                 </div>
                                                                                 {inputTrueFalse ? (
                                                                                         <div className="mb-4">
                                                                                                 <div className="flex justify-between items-center hover:text-[#2cacbb]">
                                                                                                         <label
                                                                                                                 htmlFor="extraphone"
-                                                                                                                className="block text-[#535353]  font-medium mb-2"
+                                                                                                                className=" text-[#535353] text-center  font-medium mb-2"
                                                                                                         >
                                                                                                                 Additional
                                                                                                                 Phone
@@ -341,11 +293,9 @@ const BuilderForm = () => {
                                                                                                 }
                                                                                         >
                                                                                                 <div className="text-add-other flex justify-center items-center">
-                                                                                                        <AiOutlinePlusCircle color="#03acbb" />
-                                                                                                        <span className="text-[#03acbb]">
-                                                                                                                Add
-                                                                                                                another
-                                                                                                                number
+                                                                                                        <span className="text-[#03acbb] flex leading-4 justify-center items-center  text-center">
+                                                                                                        <AiOutlinePlusCircle size={20} className=" ml-1" color="#03acbb" />
+                                                                                                                Add another number
                                                                                                         </span>
                                                                                                 </div>
                                                                                         </div>
@@ -356,7 +306,7 @@ const BuilderForm = () => {
                                                                                         htmlFor="email"
                                                                                         className="block text-gray-600 font-medium"
                                                                                 >
-                                                                                        Email
+                                                                                        Email*
                                                                                 </label>
                                                                                 <input
                                                                                         type="email"
