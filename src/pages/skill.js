@@ -6,17 +6,46 @@ import { useNavigate, useLocation } from "react-router-dom";
 import BasicSelect from "../componenets/simpleDropDown";
 import {LuArrowDownUp} from 'react-icons/lu';
 import React from 'react';
-import Drag from "../componenets/drag";
-import Draggable from 'react-draggable';
+// import Drag from "../componenets/drag";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import {
+  DndContext,
+  closestCenter
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  verticalListSortingStrategy
+} from "@dnd-kit/sortable";
+import {useState} from 'react';
+import { SortableItem } from "../sortable";
 import {
         AiOutlinePlusCircle,
         AiOutlineExclamationCircle,
         AiFillDelete
 } from "react-icons/ai";
 import FormHeader from "../componenets/formHeader";
-import { useState } from "react";
 import Buttons from "../componenets/buttons";
 const Skills = () => {
+        function handleDragEnd(event) {
+                console.log("Drag end called");
+                const {active, over} = event;
+                console.log("ACTIVE: " + active.id);
+                console.log("OVER :" + over.id);
+            
+                if(active.id !== over.id) {
+                  setLanguages((items) => {
+                    const activeIndex = items.indexOf(active.id);
+                    const overIndex = items.indexOf(over.id);
+                    console.log(arrayMove(items, activeIndex, overIndex));
+                    return arrayMove(items, activeIndex, overIndex);
+                    // items: [2, 3, 1]   0  -> 2
+                    // [1, 2, 3] oldIndex: 0 newIndex: 2  -> [2, 3, 1] 
+                  });
+                  
+                }
+              }
     const location = useLocation();
     const [language1 , setLanguage1] = useState("");
     const [language2 , setLanguage2] = useState("");
@@ -24,7 +53,8 @@ const Skills = () => {
     const [proficiency1 , setProfency1] = useState("");
     const [proficiency2 , setProfency2] = useState("");
     const [proficiency3 , setProfency3] = useState("");
-    
+    const [languages, setLanguages ] = useState(["JavaScript", "Python", "TypeScript"]);
+
             const experienceEndInfo = location.state.data;
            
             const navigate = useNavigate();
@@ -65,7 +95,6 @@ const Skills = () => {
             return (
                     <>
                      <div>
-        <h1>Mouse se element ko drag karein</h1>
         {/* <Draggable>
           <div
             style={{
@@ -104,7 +133,7 @@ const Skills = () => {
                                                     <form onSubmit={formik.handleSubmit}>
                                                                   
                                                                    
-                                                  <Draggable>
+                                                  
                                                     <div className="mb-4 w-full h-full">
                                                                                 <label
                                                                                         htmlFor="schoolName"
@@ -148,7 +177,7 @@ const Skills = () => {
                                                                                         )}
                                                                                         </div>
                                                                         </div>       
-                                                            </Draggable>
+                                                            
                                                     
                                                    
                                                        {!language3 &&    <div onClick={() =>{ 
@@ -194,7 +223,22 @@ const Skills = () => {
                                     </div>
                             </div>
                             <Footer />
-                            <Drag />
+                            {/* <Drag /> */}
+                            <DndContext
+      collisionDetection={closestCenter}
+      onDragEnd={handleDragEnd}
+    >
+      <Container className="p-3" style={{"width": "50%"}} align="center">
+        <h3>The best programming languages!</h3>
+        <SortableContext
+          items={languages}
+          strategy={verticalListSortingStrategy}
+        >
+          {/* We need components that use the useSortable hook */}
+          {languages.map(language => <SortableItem key={language} id={language}/>)}
+        </SortableContext>
+      </Container>
+    </DndContext>
                     </>
     );
 };

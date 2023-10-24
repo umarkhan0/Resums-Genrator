@@ -277,7 +277,6 @@ if(nextpage){
           </div>
         </div>
       </div>
-      
       <Footer />
     </div>
   );
