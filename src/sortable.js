@@ -20,8 +20,12 @@ export function SortableItem(props) {
     }
 
     return (
+        
         <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-            <Card body className="m-3">{props.id}</Card>
+           
+<div>{props.id}</div>
+
+            
         </div>
     )
 }

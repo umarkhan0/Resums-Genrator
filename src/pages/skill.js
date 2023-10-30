@@ -6,6 +6,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import BasicSelect from "../componenets/simpleDropDown";
 import {LuArrowDownUp} from 'react-icons/lu';
 import React from 'react';
+import { DndProvider, useDrag, useDrop } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
+import Drag from "../componenets/drag";
 // import Drag from "../componenets/drag";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -28,32 +32,86 @@ import {
 import FormHeader from "../componenets/formHeader";
 import Buttons from "../componenets/buttons";
 const Skills = () => {
-        function handleDragEnd(event) {
-                console.log("Drag end called");
-                const {active, over} = event;
-                console.log("ACTIVE: " + active.id);
-                console.log("OVER :" + over.id);
+        const SkillInput = ({ skill, moveSkill, findSkill }) => {
+                const [, ref] = useDrag({
+                  type: 'SKILL',
+                  item: { id: skill.id },
+                });
             
-                if(active.id !== over.id) {
-                  setLanguages((items) => {
-                    const activeIndex = items.indexOf(active.id);
-                    const overIndex = items.indexOf(over.id);
-                    console.log(arrayMove(items, activeIndex, overIndex));
-                    return arrayMove(items, activeIndex, overIndex);
-                    // items: [2, 3, 1]   0  -> 2
-                    // [1, 2, 3] oldIndex: 0 newIndex: 2  -> [2, 3, 1] 
-                  });
-                  
-                }
-              }
+                const [, drop] = useDrop({
+                  accept: 'SKILL',
+                  hover: (draggedItem) => {
+                    if (draggedItem.id !== skill.id) {
+                      const { id: draggedId } = draggedItem;
+                      const { id: overId } = skill;
+                      moveSkill(draggedId, overId);
+                      draggedItem.id = overId;
+                    }
+                  },
+                });
+                skills.map((v , i) => console.log(i))
+            console.log(skills.length);
+                return (
+                  <div  className="mb-4 w-full h-full">
+                   
+                    <label htmlFor="schoolName" className="block text-[#535353] font-medium mb-2">
+                      Skill#{skill.id}
+                    </label>
+                    <div ref={(node) => ref(drop(node))} className="flex items-center">
+                      <div className="h-8 w-10 rounded-sm flex justify-center items-center mr-4 shadow-md cursor-move">
+                        <LuArrowDownUp />
+                      </div>
+                      <input
+                        type="text"
+                        id="schoolName"
+                        name="schoolName"
+                        placeholder="Skill"
+                        value={skill.value}
+                        onChange={(e) => {
+                          const newValue = e.target.value;
+                          setSkills((prevSkills) =>
+                            prevSkills.map((s) =>
+                              s.id === skill.id ? { ...s, value: newValue } : s
+                            )
+                          );
+                        }}
+                        className="p-2 border border-gray-300 rounded w-full outline-blue-400"
+                      />
+                    </div>
+                  </div>
+                );
+              };
+            
+        const [skills, setSkills] = useState([
+                { id: 1, value: "" },
+                { id: 2, value: "" },
+                { id: 3, value: "" }
+              ]);
+              const moveSkill = (fromId, toId) => {
+                const fromIndex = skills.findIndex((s) => s.id === fromId);
+                const toIndex = skills.findIndex((s) => s.id === toId);
+                const newSkills = [...skills];
+                newSkills.splice(toIndex, 0, newSkills.splice(fromIndex, 1)[0]);
+                setSkills(newSkills);
+              console.log(newSkills);
+
+              };
+              const renderSkillInputs = () => {
+                return skills.map((skill) => (
+                  <SkillInput
+                    key={skill.id}
+                    skill={skill}
+                    moveSkill={moveSkill}
+                    findSkill={(id) => skills.find((s) => s.id === id)}
+                  />
+                ));
+              };            
+       
     const location = useLocation();
     const [language1 , setLanguage1] = useState("");
     const [language2 , setLanguage2] = useState("");
     const [language3 , setLanguage3] = useState("");
-    const [proficiency1 , setProfency1] = useState("");
-    const [proficiency2 , setProfency2] = useState("");
-    const [proficiency3 , setProfency3] = useState("");
-    const [languages, setLanguages ] = useState(["JavaScript", "Python", "TypeScript"]);
+
 
             const experienceEndInfo = location.state.data;
            
@@ -95,21 +153,6 @@ const Skills = () => {
             return (
                     <>
                      <div>
-        {/* <Draggable>
-          <div
-            style={{
-              width: 100,
-              height: 100,
-              backgroundColor: 'lightblue',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              cursor: 'grab',
-            }}
-          >
-            Drag me!
-          </div>
-        </Draggable> */}
       </div>
                             <FormHeader />
                             <div className="flex justify-between  main-first-component ml-4">
@@ -133,50 +176,10 @@ const Skills = () => {
                                                     <form onSubmit={formik.handleSubmit}>
                                                                   
                                                                    
-                                                  
-                                                    <div className="mb-4 w-full h-full">
-                                                                                <label
-                                                                                        htmlFor="schoolName"
-                                                                                        className="block text-[#535353] font-medium mb-2"
-                                                                                >
-                                                                                        Skill#1
-                                                                                </label>
-                                                                                <div className=" flex items-center">
-                                                                                <div className=" h-8 w-10 rounded-sm flex justify-center items-center mr-4 shadow-md cursor-move"><LuArrowDownUp /></div>
-                                                                                <input
-                                                                                        type="text"
-                                                                                        id="schoolName                                                                                        "
-                                                                                        name="schoolName"
-                                                                                        placeholder="Karachi Univercity"
-                                                                                        onChange={
-                                                                                                formik.handleChange
-                                                                                        }
-                                                                                        onBlur={
-                                                                                                formik.handleBlur
-                                                                                        }
-                                                                                        value={
-                                                                                                formik
-                                                                                                        .values
-                                                                                                        .schoolName
-                                                                                        }
-                                                                                        className=" p-2 border border-gray-300 rounded w-full outline-blue-400"
-                                                                                />
-                                                                                {formik
-                                                                                        .touched
-                                                                                        .schoolName &&
-                                                                                        formik
-                                                                                                .errors
-                                                                                                .schoolName && (
-                                                                                                <div className="text-red-600 text-sm mt-1">
-                                                                                                        {
-                                                                                                                formik
-                                                                                                                        .errors
-                                                                                                                        .schoolName
-                                                                                                        }
-                                                                                                </div>
-                                                                                        )}
-                                                                                        </div>
-                                                                        </div>       
+                                                    <DndProvider backend={HTML5Backend}>
+      {renderSkillInputs()}
+    </DndProvider>                           
+                                                       
                                                             
                                                     
                                                    
@@ -224,21 +227,8 @@ const Skills = () => {
                             </div>
                             <Footer />
                             {/* <Drag /> */}
-                            <DndContext
-      collisionDetection={closestCenter}
-      onDragEnd={handleDragEnd}
-    >
-      <Container className="p-3" style={{"width": "50%"}} align="center">
-        <h3>The best programming languages!</h3>
-        <SortableContext
-          items={languages}
-          strategy={verticalListSortingStrategy}
-        >
-          {/* We need components that use the useSortable hook */}
-          {languages.map(language => <SortableItem key={language} id={language}/>)}
-        </SortableContext>
-      </Container>
-    </DndContext>
+                           
+    <Drag />
                     </>
     );
 };
