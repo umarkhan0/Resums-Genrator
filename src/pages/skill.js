@@ -8,7 +8,7 @@ import React from 'react';
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { AiFillDelete } from "react-icons/ai";
 import { useState, useEffect } from 'react';
 import {
   AiOutlinePlusCircle,
@@ -29,7 +29,6 @@ const Skills = () => {
           const { id: draggedId } = draggedItem;
           const { id: overId } = skill;
 
-          // Add a condition here to prevent updating the skill's ID
           if (draggedItem.id !== overId) {
             moveSkill(draggedId, overId);
             draggedItem.id = overId;
@@ -38,38 +37,50 @@ const Skills = () => {
       },
     });
     // skills.map((v , i) => console.log(i))
+    const shareIndex = skill => setSkills(skills.filter((s) => s.id !== skill.id));
+
     //     console.log(skills[0]);
 
+const index = (skills , skill) => {
+   const index = skills.findIndex(array => array.id === skill.id);
+         return index + 1;
+};
     return (
-
-
-
-      <animated.div className="mb-4 w-full h-full">
-
-        <label htmlFor="schoolName" className="block text-[#535353] font-medium mb-2">
-          Skill#1
-
+      <animated.div ref={(node) => ref(drop(node))}  className="mb-4 w-full h-full">
+        <label htmlFor="schoolName" className="flex justify-between items-center text-[#535353] font-medium mb-2">
+         Skill#{index(skills , skill)}
+          <span><AiFillDelete
+         className=" cursor-pointer"
+       onClick={() => {
+        shareIndex(skill)
+       }}
+         /></span>
         </label>
-        <div ref={(node) => ref(drop(node))} className="flex items-center">
+        <div className="flex items-center">
           <div className="h-8 w-10 rounded-sm flex justify-center items-center mr-4 shadow-md cursor-move">
             <LuArrowDownUp />
           </div>
           <input
-            type="text"
-            id="schoolName"
-            name="schoolName"
-            placeholder="Skill"
-            value={skill.value}
-            onChange={(e) => {
-              const newValue = e.target.value;
-              setSkills((prevSkills) =>
-                prevSkills.map((s) =>
-                  s.id === skill.id ? { ...s, value: newValue } : s
-                )
-              );
-            }}
-            className="p-2 border border-gray-300 rounded w-full outline-blue-400"
-          />
+  type="text"
+  id="schoolName"
+  name="schoolName"
+  placeholder="Skill"
+  value={skill.value}
+  onChange={(e) => {
+    const newValue = e.target.value;
+    // console.log('New value:', newValue);
+    setSkills((prevSkills) =>
+      prevSkills.map((s) =>
+        s.id === skill.id ? { ...s, value: newValue } : s
+// console.log(s)
+
+      )
+    );
+  }}
+  
+  className="p-2 border border-gray-300 rounded w-full outline-blue-400"
+/>
+
         </div>
       </animated.div>
 
@@ -79,8 +90,7 @@ const Skills = () => {
 
   const [skills, setSkills] = useState([
     { id: 1, value: "" },
-    { id: 2, value: "" },
-    { id: 3, value: "" }
+    { id: 2, value: "" }
   ]);
   const moveSkill = (fromId, toId) => {
     const fromIndex = skills.findIndex((s) => s.id === fromId);
@@ -118,7 +128,7 @@ const Skills = () => {
       skillsArray: ""
     },
     onSubmit: (values) => {
-values.skillsArray = skills
+      values.skillsArray = skills
       console.log(values);
 
 
@@ -161,18 +171,17 @@ values.skillsArray = skills
                 {renderSkillInputs()}
               </DndProvider>
 
+              {
+                skills.length < 6 &&
+                <div onClick={
 
+                  () =>
+                    setSkills([...skills, { id: skills.length + 1, value: "" }])
+                } className=" flex items-center mt-2 cursor-pointer text-[#03acbb] font-extrabold text-[13px]"
 
-
-              <div onClick={
-
-                () =>
-                  setSkills([...skills, { id: skills.length + 1, value: "" }])
-              } className=" flex items-center mt-2 cursor-pointer text-[#03acbb] font-extrabold text-[13px]"
-
-              > <AiOutlinePlusCircle
-                /> Add another Language</div>
-
+                > <AiOutlinePlusCircle
+                  />  Add another skill</div>
+              }
               <Buttons />
             </form>
 
