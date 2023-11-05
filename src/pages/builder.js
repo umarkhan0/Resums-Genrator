@@ -4,7 +4,7 @@ import Footer from "../componenets/footer";
 import resumeImage from "../images/hero_resume_home_page_rn.webp";
 import Buttons from "../componenets/buttons";
 import { useNavigate , useLocation } from "react-router-dom";
-
+import { useEffect } from "react";
 import {
         AiFillDelete,
         AiOutlinePlusCircle,
@@ -12,7 +12,11 @@ import {
 import FormHeader from "../componenets/formHeader";
 import { useState } from "react";
 const BuilderForm = () => {
-        
+           const { pathname } = useLocation();
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
         const navigate = useNavigate();
         let [inputTrueFalse, setInputChack] = useState(false);
         const springProps = useSpring({
@@ -31,7 +35,8 @@ const BuilderForm = () => {
                 },
                 onSubmit: (values) => {
                         console.log(values);
-                        navigate("/experience", { state: { data: values } });
+                        // navigate("/experience", { state: { data: values } });
+                        navigate("/experience-tips", { state: { data: values } });
 
 
                 },

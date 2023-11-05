@@ -15,8 +15,12 @@ import {
 import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
 
 import FormHeader from "../componenets/formHeader";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 const Education = () => {
+
+        useEffect(() => {
+          window.scrollTo(0, 0);
+        }, []);
         const location = useLocation();
         const experienceEndInfo = location.state.data;
         const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -229,7 +233,7 @@ console.log(experiencePlusContect);
 
                                                                         <div className="flex flex-col sm:flex-row justify-between items-center">
                                                                                 <div className="mb-4 sm:mr-2 w-full sm:w-2/5">
-                                                                                        <label htmlFor="fieldStudy" className="block text-[#535353] font-medium mb-2">
+                                                                                        <label htmlFor="fieldStudy" className="block mb-1.5 text-[#535353] font-medium ">
                                                                                                 Field of Study
                                                                                         </label>
                                                                                         <input
@@ -245,7 +249,7 @@ console.log(experiencePlusContect);
                                                                                                 onBlur={formik.handleBlur}
                                                                                                 value={formik.values.fieldStudy}
                                                                                                 maxLength={13}
-                                                                                                className="p-2 border border-gray-300 rounded outline-blue-400 w-full"
+                                                                                                className="p-2 mb-0.5 border border-gray-300 rounded outline-blue-400 w-full"
                                                                                         />
                                                                                         
                                                                                 </div>
@@ -255,7 +259,7 @@ console.log(experiencePlusContect);
                                                                                                 Graduation Date
                                                                                         </label>
 
-                                                                                        <div className="mb-4 mt-2  w-full sm:w-full">
+                                                                                        <div className="mb-4 mt-2 pt-1 w-full sm:w-full">
                                                                                                 <SingleSelectPlaceholder
                                                                                                         selectedValue={selectedMonth}
                                                                                                         onChange={handleMonthChange}

@@ -32,6 +32,8 @@
   .container-contaent-intero{
     width: 100%;
    min-height: 250px;
+   display: flex;
+   justify-content: center;
   }
   .img-revers{
     transform: rotate(90deg);

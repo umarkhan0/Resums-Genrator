@@ -16,11 +16,21 @@ import {
 import FormHeader from "../componenets/formHeader";
 import Buttons from "../componenets/buttons";
 const Skills = () => {
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   const SkillInput = ({ skill, moveSkill, findSkill }) => {
-    const [, ref] = useDrag({
+    const [{ isDragging }, ref] = useDrag({
       type: 'SKILL',
       item: { id: skill.id },
+      collect: (monitor) => ({
+        isDragging: monitor.isDragging(),
+      }),
     });
+
+
+  
 
     const [, drop] = useDrop({
       accept: 'SKILL',
@@ -35,6 +45,9 @@ const Skills = () => {
           }
         }
       },
+    });
+    const springProps = useSpring({
+      transform: isDragging ? 'translateY(-10px)' : 'translateY(0)',
     });
     // skills.map((v , i) => console.log(i))
     const shareIndex = skill => setSkills(skills.filter((s) => s.id !== skill.id));
@@ -79,6 +92,7 @@ const index = (skills , skill) => {
   }}
   
   className="p-2 border border-gray-300 rounded w-full outline-blue-400"
+  autoFocus
 />
 
         </div>
@@ -89,8 +103,7 @@ const index = (skills , skill) => {
   };
 
   const [skills, setSkills] = useState([
-    { id: 1, value: "" },
-    { id: 2, value: "" }
+    { id: 1, value: "" }
   ]);
   const moveSkill = (fromId, toId) => {
     const fromIndex = skills.findIndex((s) => s.id === fromId);
@@ -129,17 +142,18 @@ const index = (skills , skill) => {
     },
     onSubmit: (values) => {
       values.skillsArray = skills
-      console.log(values);
+      // console.log(values);
 
 
+let skillsfinal  = values
+      let language = experienceEndInfo.language;
+      let contect = experienceEndInfo.contect;
+      let experiecePage = experienceEndInfo.experiecePage;
+      let education = experienceEndInfo.education;
 
-      // let language = values;
-      // let contect = experienceEndInfo.contect;
-      // let experiecePage = experienceEndInfo.experiecePage;
-      // let education = experienceEndInfo.education;
-
-      // const experiencePlusContect = Object.assign({}, { contect }, { experiecePage }, { education }, { language });
-      // navigate("/skills", { state: { data: experiencePlusContect } });
+      const experiencePlusContect = Object.assign({}, { contect }, { experiecePage }, { education }, { language } , {skillsfinal});
+      console.log(experiencePlusContect);
+      navigate("/summary", { state: { data: experiencePlusContect } });
     },
 
 

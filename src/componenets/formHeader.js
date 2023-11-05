@@ -4,10 +4,10 @@ const FormHeader = () =>{
   
     return(
         <div>
-            <div className=" h-16 top-0 w-full  flex justify-between items-center">
+            <div className=" h-16 top-0 w-full  flex justify-between items-center text-center">
             <img className='h-8 m-2' src={Logo}/>
-            <div className='flex line-container'>
-                {pathWindow == "/builder" ? <p className='font-["libre"] font-semibold text-[16px]'>
+            <div className='flex line-container justify-center text-center items-center mt-2.5'>
+                {pathWindow == "/builder" ? <p className='font-["libre"] font-semibold text-[16px] text-center'>
                     1.Contact Info <span className=' ml-3'> &gt; </span>
                 </p> : 
                  <p className='font-["libre"] opacity-40 text-[16px]'>
@@ -37,9 +37,16 @@ const FormHeader = () =>{
                     <p className='ml-3 opacity-40 font-["libre"] text-[16px]'>
                     4.Skills  <span className=' ml-3'> &gt; </span>
                 </p>}
-                <p className='ml-3 mr-3 opacity-40 font-["libre"] text-[16px]'>
-                    5.Summary 
-                </p>
+                {pathWindow == "/summary" ?
+                  
+                  <p className='ml-3 font-semibold font-["libre"] text-[16px] mr-4'>
+                  5.Summary 
+                  </p>
+                  :
+                    
+                    <p className='ml-3 opacity-40 font-["libre"] text-[16px] mr-4'>
+                    5.Summary  
+                </p>}
             </div>
 
             </div>

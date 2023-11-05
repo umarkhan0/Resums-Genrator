@@ -13,6 +13,10 @@ import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
 // import { useLocation } from "react-router-dom"
 
 const Experience = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const location = useLocation();
   const contectUs = location.state.data;
 
@@ -87,16 +91,23 @@ const Experience = () => {
       showCancelButton: true,
       showCloseButton: true,
     }).then((res) => {
+      
       if (res.isConfirmed) {
+        handleRegenerateAnimation()
+
         setCcpmpanyValue("");
         setjobTitleValue("");
         setcityvalue("");
         setSelectedYear("");
         setlastSelectedYear("");
+
         setCountryvalue("");
         setIsChecked(false);
         console.log("yyyyy");
-        handleRegenerateAnimation()
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+        } , 800)
+
       }
 
       console.log(experienceAdded);

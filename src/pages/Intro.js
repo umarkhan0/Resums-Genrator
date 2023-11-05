@@ -1,10 +1,14 @@
 import LogoImage from "../images/logo-resume-nerd.svg";
 import sideImage from "../images/filetype-pdf.svg";
 import resumeImage from "../images/hero_resume_home_page_rn.webp"
-import { NavLink } from "react-router-dom";
+import { NavLink , useLocation } from "react-router-dom";
 import { useSpring, animated } from 'react-spring';
-
+import { useEffect } from "react";
 const Intro = () => {
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   const animationProps = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
@@ -17,8 +21,8 @@ const Intro = () => {
       <div className="flex justify-between  main-container-intro">
         <div className=" pl-2 flex justify-center container-contaent-intero  w-1/2 items-center">
           <div>
-            <p className=" text-[#a0a5dd] text-sm">3 SIMPLE STEPS</p>
-            <h2 className=" text-3xl font-serif font-bold">Get Started</h2>
+            <p className=" text-[#a0a5dd] font-bold text-sm">3 SIMPLE STEPS</p>
+            <h1 className=" text-[36px] mb-12 font-[libre] leading-3 font-bold">Get Started</h1>
             <div className="flex mt-2">
               <div className=" text-[#55a1e8] absolute  flex justify-center items-center bg-[#deefff] rounded-sm  w-[32px] h-7 text-center font-bold">
                 1
@@ -43,7 +47,7 @@ const Intro = () => {
               <span className="pl-9">Download or print your new resume!</span>
             </div>
             <div className="flex justify-center items-center mt-12 mb-4">
-           <NavLink to={"/builder"} className=" bg-[#008d5f] border-none active:opacity-5 text-white w-[70%] py-2 rounded-sm font-bold text-center">
+           <NavLink to={"/builder"} className=" no-underline bg-[#008d5f] border-none active:opacity-5 text-white w-[70%] py-2 rounded-sm font-bold text-center">
                 CONTINUE
               </NavLink>
             </div>

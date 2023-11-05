@@ -10,9 +10,13 @@ import {
         AiFillDelete
 } from "react-icons/ai";
 import FormHeader from "../componenets/formHeader";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import Buttons from "../componenets/buttons";
 const Language = () => {
+
+        useEffect(() => {
+          window.scrollTo(0, 0);
+        }, []);
         const location = useLocation();
         const [language1, setLanguage1] = useState("");
         const [secondInputShow, setShowSecondInput] = useState(false);

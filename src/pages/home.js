@@ -1,12 +1,15 @@
 import React from "react";
-import { useFormik } from "formik";
 import ResponsiveAppBar from "../componenets/header";
 import { NavLink } from "react-router-dom";
 import resumsImage from "../images/hero_resume_home_page_rn.webp";
 import { useSpring, animated } from 'react-spring';
-
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 const Basic = () => {
-  
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const animationProps = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
