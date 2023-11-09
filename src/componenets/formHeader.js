@@ -14,14 +14,14 @@ const FormHeader = () =>{
                  1.Contact Info <span className=' ml-3'> &gt; </span>
                  </p>
                 }
-               {pathWindow == "/experience"  ?  <p className=' ml-3 font-semibold font-["libre"] text-[16px]'>
+               {pathWindow == "/experience" || pathWindow == "/experience-tips"  ?  <p className=' ml-3 font-semibold font-["libre"] text-[16px]'>
                     2.Work Experience  <span className=' ml-3'> &gt; </span>
                 </p> : 
                 <p className=' ml-3 opacity-40 font-["libre"] text-[16px]'>
                     2.Work Experience  <span className=' ml-3'> &gt; </span>
                 </p>
             }
-               {pathWindow == "/education" || pathWindow === "/education/language" ? <p className='font-semibold ml-3  font-["libre"] text-[16px]'>
+               {pathWindow == "/education" || pathWindow === "/education/language" || pathWindow === "/education-tips" ? <p className='font-semibold ml-3  font-["libre"] text-[16px]'>
                     3.Education  <span className=' ml-3'> &gt; </span>
                 </p>: <p className=' ml-3  font-["libre"] opacity-40  text-[16px]'>
                     3.Education  <span className=' ml-3'> &gt; </span>
@@ -37,7 +37,7 @@ const FormHeader = () =>{
                     <p className='ml-3 opacity-40 font-["libre"] text-[16px]'>
                     4.Skills  <span className=' ml-3'> &gt; </span>
                 </p>}
-                {pathWindow == "/summary" ?
+                {pathWindow == "/summary" || pathWindow == "/summary-tips" ?
                   
                   <p className='ml-3 font-semibold font-["libre"] text-[16px] mr-4'>
                   5.Summary 

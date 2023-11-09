@@ -141,12 +141,12 @@ if(experienceAdded.length == 1){
 }
 if(experienceAdded.length == 2){
   const experiencePlusContect = Object.assign({} , {contectUs},{experienceAdded});
-     navigate("/education", { state: { data: experiencePlusContect} });
+     navigate("/education-tips", { state: { data: experiencePlusContect} });
 }
 }, [experienceAdded])
 if(nextpage){
   const experiencePlusContect = Object.assign({} , {contectUs},{experienceAdded});
-   navigate("/education", { state: { data: experiencePlusContect} });
+   navigate("/education-tips", { state: { data: experiencePlusContect} });
 }
 
   return (

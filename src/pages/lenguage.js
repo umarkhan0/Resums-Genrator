@@ -59,7 +59,7 @@ const Language = () => {
                         let education = experienceEndInfo.education;
 
                         const experiencePlusContect = Object.assign({}, { contect }, { experiecePage }, { education }, { language });
-                        navigate("/skills", { state: { data: experiencePlusContect } });
+                        navigate("/skill-tips", { state: { data: experiencePlusContect } });
                 },
 
 

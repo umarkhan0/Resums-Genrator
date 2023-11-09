@@ -7,7 +7,12 @@ import BuilderForm from '../pages/builder';
 import Language from '../pages/lenguage';
 import { Experience } from '../pages/experience';
 import Sumrry from '../pages/sumrry';
+import EductionTips from '../pages/education-tips';
 import ExperienceTips from '../pages/experience-tips';
+import SkillsTips from '../pages/skills-tips';
+import SummaryTips from '../pages/summary-tips';
+import ReadyResume from '../pages/readyResume';
+import PDFunc from '../pages/PDF';
 let AppRouter = () =>{
     return(
         <BrowserRouter>
@@ -21,8 +26,11 @@ let AppRouter = () =>{
             <Route path='/education/language' element={<Language/>}></Route>
             <Route path='/summary' element={<Sumrry/>}></Route>
             <Route path='/experience-tips' element={<ExperienceTips/>}></Route>
+            <Route path='/education-tips' element={<EductionTips/>}></Route>
+            <Route path='/skill-tips' element={<SkillsTips/>}></Route>
+            <Route path='/summary-tips' element={<SummaryTips/>}></Route>
+            <Route path='/ready' element={<PDFunc/>}></Route>
 
-            
 
             <Route path='/skills' element={<Skills/>}></Route>
 

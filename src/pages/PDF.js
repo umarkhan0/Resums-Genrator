@@ -1,11 +1,11 @@
-
+import { useLocation } from 'react-router-dom';
 import React from 'react';
 import { PDFDownloadLink, PDFViewer, Document, Page, Text, Image, StyleSheet, View, Link, Line } from '@react-pdf/renderer';
 import { CiLinkedin } from "react-icons/ci";
 import { AiOutlineFacebook, AiOutlineInstagram } from "react-icons/ai";
 import faceBook from "../images/f_logo_RGB-Blue_1024.png";
-import instagramIcon from '../images/insta.png'
-import myImage from "../images/mypicu.jpg"
+import instagramIcon from '../images/insta.png';
+import myImage from "../images/mypicu.jpg";
 // import  linkedInIcon  from '../images/how-It-works.svg';
 const styles = StyleSheet.create({
   page: {
@@ -237,7 +237,10 @@ const styles = StyleSheet.create({
   }
 });
 
-const PDFDocument = () => (
+const PDFDocument = (daata) => {
+  let check = daata?.data?.experienceEndInfo?.contect?.name
+  console.log(daata?.data?.experienceEndInfo?.contect?.name);
+  return(
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.headContaner}>
@@ -260,7 +263,9 @@ const PDFDocument = () => (
           </div>
         </View>
         <View style={styles.nameContent}>
-          <Text style={styles.nameStyles}>Umar</Text>
+          <Text style={styles.nameStyles}>{
+          check
+          }</Text>
           <Text style={styles.lastNameStyles}>Aamir</Text>
           <Text style={styles.skillIntro}>WEB DEVELPER</Text>
           <View style={{ flexDirection: "row" }}>
@@ -562,24 +567,30 @@ const PDFDocument = () => (
       </View>
     </Page>
   </Document>
-);
+  )
+}
 const PDFViewerComponent = () => (
   <PDFViewer width="100%" height={900}>
     <PDFDocument />
   </PDFViewer>
 );
 
-const PDFDownloadButton = () => (
+const PDFDownloadButton = () => {
+  const location = useLocation();
+  const daata = location.state.data
+  return(
   <div>
-    <PDFDownloadLink document={<PDFDocument />} fileName="my_document.pdf">
+    <PDFDownloadLink document={<PDFDocument data={daata} />} fileName="my_document.pdf">
       {({ blob, url, loading, error }) =>
         loading ? 'Loading document...' : 'Download now'
       }
     </PDFDownloadLink>
   </div>
-);
+  )
+}
 
 export default function PDFunc() {
+  
   return (
     <div>
       <PDFViewerComponent />

@@ -24,20 +24,30 @@ const Sumrry = () => {
         setStoredValue(serializedContent);
     };
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
-    const [storedValue, setStoredValue] = useState('');
-
-    console.log(storedValue);
+    const [summry, setStoredValue] = useState('');
 
 
 
+    const navigate = useNavigate();
 
 
     const location = useLocation();
 
-
+const formSubmit = (event) => {
+    event.preventDefault();
     const experienceEndInfo = location.state.data;
-    console.log(experienceEndInfo);
-    const navigate = useNavigate();
+    const final = Object.assign({}, { experienceEndInfo }, {summry});
+    console.log(final);
+    navigate("/ready", { state: { data: final } });
+}
+   
+
+
+
+
+
+
+
     const springProps = useSpring({
         from: { transform: "translateY(20%)" },
         to: { transform: "translateY(0%)" },
@@ -60,8 +70,7 @@ const Sumrry = () => {
                         <div className=" max-w-[430px] text-[16px] mb-3 leading-5 text-[#515151]">
                             Briefly describe the value that you bring through your skills, background and experience.
                         </div>
-
-
+                        <form onSubmit={formSubmit}>
                         <div>
                             <div className=" flex justify-between items-center text-center h-12">
                                 <p className=" text-center block text-[#535353] font-medium mb-2">Summary</p>
@@ -94,6 +103,7 @@ const Sumrry = () => {
                             </div>
                         </div>
                         <Buttons />
+                        </form>
                     </div>
                 </animated.div>
                 <div className=" flex justify-center form-side-image items-center">

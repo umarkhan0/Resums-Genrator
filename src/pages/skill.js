@@ -153,7 +153,7 @@ let skillsfinal  = values
 
       const experiencePlusContect = Object.assign({}, { contect }, { experiecePage }, { education }, { language } , {skillsfinal});
       console.log(experiencePlusContect);
-      navigate("/summary", { state: { data: experiencePlusContect } });
+      navigate("/summary-tips", { state: { data: experiencePlusContect } });
     },
 
 
