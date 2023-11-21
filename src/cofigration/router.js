@@ -12,6 +12,7 @@ import ExperienceTips from '../pages/experience-tips';
 import SkillsTips from '../pages/skills-tips';
 import SummaryTips from '../pages/summary-tips';
 import ReadyResume from '../pages/readyResume';
+import Login from '../pages/login';
 import PDFunc from '../pages/PDF';
 let AppRouter = () =>{
     return(
@@ -29,7 +30,8 @@ let AppRouter = () =>{
             <Route path='/education-tips' element={<EductionTips/>}></Route>
             <Route path='/skill-tips' element={<SkillsTips/>}></Route>
             <Route path='/summary-tips' element={<SummaryTips/>}></Route>
-            <Route path='/ready' element={<PDFunc/>}></Route>
+            <Route path='/ready' element={<ReadyResume/>}></Route>
+            <Route path='/login' element={<Login/>}></Route>
 
 
             <Route path='/skills' element={<Skills/>}></Route>
