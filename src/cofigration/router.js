@@ -13,6 +13,7 @@ import SkillsTips from '../pages/skills-tips';
 import SummaryTips from '../pages/summary-tips';
 import ReadyResume from '../pages/readyResume';
 import Login from '../pages/login';
+import SignUp from '../pages/SignUpP';
 import PDFunc from '../pages/PDF';
 let AppRouter = () =>{
     return(
@@ -32,7 +33,7 @@ let AppRouter = () =>{
             <Route path='/summary-tips' element={<SummaryTips/>}></Route>
             <Route path='/ready' element={<ReadyResume/>}></Route>
             <Route path='/login' element={<Login/>}></Route>
-
+            <Route path='/sign' element={<SignUp/>}></Route>
 
             <Route path='/skills' element={<Skills/>}></Route>
 

@@ -17,7 +17,7 @@ const Basic = () => {
 
   return (
     <animated.div style={animationProps} className=" bg-[#f4faff] fixed w-full h-full overflow-auto">
-      <ResponsiveAppBar />
+      <ResponsiveAppBar positionS={"fixed"} />
       <div className=" flex justify-center mt-3 mb-3 flex-wrap items-center">
         {/* <div className="flex justify-center"></div> */}
         <div className="  lg:w-2/5 sm:w-full">

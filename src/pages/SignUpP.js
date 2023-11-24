@@ -5,7 +5,8 @@ import roboImg from '../images/beab049afb9f4a654f71eb8dd8164e15-removebg-preview
 import { jwtDecode } from 'jwt-decode';
 import Footer from '../componenets/footer';
 import { NavLink } from 'react-router-dom';
-const Login = () => {
+import Login from './login';
+const SignUp = () => {
   const [loginWidth, setLoginWidth] = useState(300);
 
   useEffect(() => {
@@ -31,10 +32,10 @@ const Login = () => {
               <img className=" h-14 w-14" src={roboImg} alt="robo img" />
             </div>
             <h1 className=" text-center mb-[7px] font-black font-[raleway] text-[30px]">
-              Welcome Back
+              Wellcome
             </h1>
             <p className=" mb-[25px] text-[16px] font-normal text-center leading-3">
-              Sign in to your account.
+            Create your account
             </p>
            <div className=' flex justify-center items-center'>
               <GoogleOAuthProvider
@@ -54,7 +55,16 @@ const Login = () => {
               </GoogleOAuthProvider>
             </div>
             <hr className="hr-text" data-content="OR" />
-
+            <div className=' mb-6 pl-1 pr-1'>
+  <label htmlFor='mail-inp' className=' pl-0.5 text-[14px] font-light min-h-[19px] font-[Raleway]'>
+  Your Name
+  </label>
+  <br />
+  <input id='mail-inp' className=' mt-1 appearance-none rounded-md h-[40px] w-[100%] p-[8px] text-[14px] border outline-[#03acbb]   font-[Raleway]' type='email' placeholder='Enter Email' />
+  <span className=' pl-0.5 text-[#fb6565] text-[14px] font-[Raleway]'>
+  Please enter correct username
+  </span>
+</div>
 <div className=' mb-6 pl-1 pr-1'>
   <label htmlFor='mail-inp' className=' pl-0.5 text-[14px] font-light min-h-[19px] font-[Raleway]'>
   Email address
@@ -65,7 +75,7 @@ const Login = () => {
   Please enter correct username
   </span>
 </div>
-<div className=' mb-3 pl-1 pr-1'>
+<div className=' mb-6 pl-1 pr-1'>
   <label htmlFor='pass-inp' className=' pl-0.5 text-[14px] font-light min-h-[19px] font-[Raleway]'>
   Password
   </label>
@@ -75,16 +85,13 @@ const Login = () => {
   Password is required.
   </span>
 </div>
-<div className=' flex justify-end w-[95%] leading-4'>
-  <p className='text-[#03acbb] font-[600] text-[13px] hover:underline cursor-pointer'>Forgot my password</p>
-</div>
 <div className='flex justify-center'>
 <button className=' w-[95%]  bg-[#008d5f] mb-3 text-[16px] font-[800] active:opacity-30 text-[#fff] h-[45px] rounded-md'>
-  Sign in
+  Sign up
 </button>
 </div>
-<NavLink to={"/sign"} className=' text-center no-underline'>
-<p className='text-[#03acbb] p-2 font-[600] text-[13px] hover:underline cursor-pointer'>Don't have an account? Sign Up</p>
+<NavLink to={"/login"} className=' text-center no-underline'>
+  <p className='text-[#03acbb] p-2 font-[600] text-[13px] hover:underline cursor-pointer'>Have an account? Log in now</p>
 </NavLink>
           </div>
         </div>
@@ -95,4 +102,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

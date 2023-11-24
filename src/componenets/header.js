@@ -14,7 +14,7 @@ import { NavLink } from 'react-router-dom';
 
 const pages = ['Resums', 'Contect us' , 'Sign In' ,   <NavLink to={"../intro"} className=' bg-[#008d5f] px-5 py-3 rounded-md no-underline text-white'>Create Resume</NavLink>];
 
-function ResponsiveAppBar() {
+function ResponsiveAppBar(position1) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -26,7 +26,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="fixed"  style={{
+    <AppBar position={position1.positionS}  style={{
         backgroundColor: "#fff",
         height: "60px",
         display: 'flex',
