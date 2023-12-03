@@ -95,3 +95,8 @@ GoogleLogin {
 .shadow-outline {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adjust the shadow properties as needed */
 }
+.pageOtp{
+  /* background-image: url("https://img.freepik.com/free-photo/account-verification-with-password-3d-padlock_107791-16181.jpg?w=826&t=st=1701430707~exp=1701431307~hmac=6a3e5df0ba2075edb6fb21b537bed03605e4ea942a2895106cb24a3e0fa04ca3"); */
+  background-size: contain;
+  filter: brightness(90%); 
+}

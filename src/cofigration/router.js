@@ -15,6 +15,8 @@ import ReadyResume from '../pages/readyResume';
 import Login from '../pages/login';
 import SignUp from '../pages/SignUpP';
 import PDFunc from '../pages/PDF';
+import Deshbord from '../pages/dhesbord';
+import OTPverify from '../pages/otpverify';
 let AppRouter = () =>{
     return(
         <BrowserRouter>
@@ -31,11 +33,12 @@ let AppRouter = () =>{
             <Route path='/education-tips' element={<EductionTips/>}></Route>
             <Route path='/skill-tips' element={<SkillsTips/>}></Route>
             <Route path='/summary-tips' element={<SummaryTips/>}></Route>
-            <Route path='/ready' element={<ReadyResume/>}></Route>
+            <Route path='/ready' element={<PDFunc/>}></Route>
             <Route path='/login' element={<Login/>}></Route>
             <Route path='/sign' element={<SignUp/>}></Route>
-
+            <Route path='/otp' element={<OTPverify/>}></Route>
             <Route path='/skills' element={<Skills/>}></Route>
+            <Route path='/deshbord' element={<Deshbord/>}></Route>
 
 
 
