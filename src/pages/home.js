@@ -18,14 +18,12 @@ const Basic = () => {
   return (
     <animated.div style={animationProps} className=" bg-[#f4faff] fixed w-full h-full overflow-auto">
       <ResponsiveAppBar positionS={"fixed"} />
-      <div className=" flex justify-center mt-3 mb-3 flex-wrap items-center">
-        {/* <div className="flex justify-center"></div> */}
+      <div className=" flex justify-center mt-3 flex-wrap items-center">
         <div className="  lg:w-2/5 sm:w-full">
           <div className="media-change">
-          <p className=" text-heading text-5xl font-extrabold  font-serif text-[#333]">
+          <p className=" text-heading sm:text-5xl leading-8 text-[30px] font-extrabold  font-serif text-[#333]">
             Create a custom resume and cover letter in minutes!
           </p>
-          {/* <i class="far fa-file-certificate"></i> */}
           <div>
           <div className="flex text-center pt-2  items-center">
             <svg
@@ -97,11 +95,43 @@ const Basic = () => {
         </div>
         </div>
         <div className=" inline-block">
-          <img className="" src={resumsImage} alt="resumsimage" />
+          <img src={resumsImage} alt="resumsimage" />
         </div>
       
     </div>
-
+<div className=" w-full bg-[#ffff]">
+<h2 className=" sm:text-[30px] font-semibold sm:leading-[42px] font-[Libre] px-[14px] text-center leading-[33px]  py-6">Create your resume in 3 simple steps:</h2>
+<div className=" flex justify-around flex-row flex-wrap">
+  <div className=" w-[300px]">
+    <div className=" flex justify-center flex-col items-center">
+    <div className=" px-8 py-3 font-semibold font-[raylway] hover:underline cursor-pointer text-[#14bc79] text-[22px] bg-[#d7ffef] text-center rounded-md">
+      1
+    </div>
+<h3 className=" font-semibold text-[28px] font-[Libre] text-center mt-4">Choose a template</h3>
+<p className=" w-[230px] text-center font-[raylway]">Pick from one of our professional designed templates that get past the ATS robots.</p>
+</div>
+  </div>
+  <div className=" w-[300px]">
+    <div className=" flex justify-center flex-col items-center">
+    <div className=" px-8 py-3 font-semibold font-[raylway] hover:underline cursor-pointer text-[#6f7cd6] text-[22px] bg-[#e9eaff] text-center rounded-md">
+      2
+    </div>
+<h3 className=" font-semibold text-[28px] font-[Libre] text-center mt-4">Enter your info</h3>
+<p className=" w-[230px] text-center font-[raylway]">Follow a guided, step-by-step process with recruiter tips.</p>
+</div>
+  </div>
+  <div className=" w-[300px]">
+    <div className=" flex justify-center flex-col items-center">
+    <div className=" px-8 py-3 font-semibold font-[raylway] hover:underline cursor-pointer text-[#eeaa2e] text-[22px] bg-[#feefd1] text-center rounded-md">
+      3
+    </div>
+<h3 className=" font-semibold text-[28px] font-[Libre] text-center mt-4">Download your resume</h3>
+<p className=" w-[230px] text-center font-[raylway]">Download in PDF, MSWord, or TXT format.</p>
+</div>
+  </div>
+  
+</div>
+</div>
     </animated.div>
   );
 };

@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { NavLink } from 'react-router-dom';
 
-const pages = ['Resums', 'Contect us' , 'Sign In' ,   <NavLink to={"../intro"} className=' bg-[#008d5f] px-5 py-3 rounded-md no-underline text-white'>Create Resume</NavLink>];
+const pages = ['Resums', 'Contect us' ,  <NavLink to={"../login"} className=" no-underline text-[#000]"> Sign In</NavLink> ,   <NavLink to={"../intro"} className=' bg-[#008d5f] px-5 py-3 rounded-md no-underline text-white'>Create Resume</NavLink>];
 
 function ResponsiveAppBar(position1) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
