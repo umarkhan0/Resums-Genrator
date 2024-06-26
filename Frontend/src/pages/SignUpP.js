@@ -5,7 +5,6 @@ import roboImg from '../images/beab049afb9f4a654f71eb8dd8164e15-removebg-preview
 import { jwtDecode } from 'jwt-decode';
 import Footer from '../componenets/footer';
 import { NavLink , useNavigate  } from 'react-router-dom';
-import Login from './login';
 import axios from 'axios';
 const SignUp = () => {
   const [username, setUsername] = useState("");
