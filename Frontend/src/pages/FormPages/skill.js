@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { useSpring, animated } from "react-spring";
-import Footer from "../componenets/footer";
-import resumeImage from "../images/hero_resume_home_page_rn.webp";
+import Footer from "../../componenets/footer";
+import resumeImage from "../../images/hero_resume_home_page_rn.webp";
 import { useNavigate, useLocation } from "react-router-dom";
 import { LuArrowDownUp } from 'react-icons/lu';
 import React from 'react';
@@ -13,8 +13,8 @@ import { useState, useEffect } from 'react';
 import {
   AiOutlinePlusCircle,
 } from "react-icons/ai";
-import FormHeader from "../componenets/formHeader";
-import Buttons from "../componenets/buttons";
+import FormHeader from "../../componenets/formHeader";
+import Buttons from "../../componenets/buttons";
 const Skills = () => {
 
     useEffect(() => {

@@ -1,4 +1,4 @@
-import ResponsiveAppBar from "../componenets/header";
+import ResponsiveAppBar from "../../componenets/header";
 import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import Alert from '@mui/material/Alert';

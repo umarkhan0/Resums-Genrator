@@ -1,11 +1,11 @@
 import { useFormik } from "formik";
 import { useSpring, animated } from "react-spring";
-import Footer from "../componenets/footer";
-import resumeImage from "../images/hero_resume_home_page_rn.webp";
-import Buttons from "../componenets/buttons";
+import Footer from "../../componenets/footer";
+import resumeImage from "../../images/hero_resume_home_page_rn.webp";
+import Buttons from "../../componenets/buttons";
 import { useNavigate, useLocation } from "react-router-dom";
-import ComboBox from "../componenets/seachSelect";
-import SingleSelectPlaceholder from "../componenets/dropdown";
+import ComboBox from "../../componenets/seachSelect";
+import SingleSelectPlaceholder from "../../componenets/dropdown";
 import { FaUnderline, FaBold } from "react-icons/fa"
 import { FiItalic } from "react-icons/fi";
 import { MdDoNotDisturbOnTotalSilence } from 'react-icons/md'
@@ -14,7 +14,7 @@ import {
 } from "react-icons/ai";
 import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
 
-import FormHeader from "../componenets/formHeader";
+import FormHeader from "../../componenets/formHeader";
 import { useState , useEffect } from "react";
 const Education = () => {
 

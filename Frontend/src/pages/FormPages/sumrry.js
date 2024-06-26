@@ -1,14 +1,14 @@
 import { useSpring, animated } from "react-spring";
-import Footer from "../componenets/footer";
-import resumeImage from "../images/hero_resume_home_page_rn.webp";
+import Footer from "../../componenets/footer";
+import resumeImage from "../../images/hero_resume_home_page_rn.webp";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState , useEffect } from 'react';
 import { FaUnderline, FaBold } from "react-icons/fa"
 import { FiItalic } from "react-icons/fi";
-import FormHeader from "../componenets/formHeader";
-import Buttons from "../componenets/buttons";
+import FormHeader from "../../componenets/formHeader";
+import Buttons from "../../componenets/buttons";
 const Sumrry = () => {
 
     useEffect(() => {

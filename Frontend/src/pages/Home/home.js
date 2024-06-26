@@ -1,7 +1,8 @@
 import React from "react";
-import ResponsiveAppBar from "../componenets/header";
+import ResponsiveAppBar from "../../componenets/header";
 import { NavLink } from "react-router-dom";
-import resumsImage from "../images/hero_resume_home_page_rn.webp";
+import resumsImage from "../../images/hero_resume_home_page_rn.webp";
+
 import { useSpring, animated } from 'react-spring';
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";

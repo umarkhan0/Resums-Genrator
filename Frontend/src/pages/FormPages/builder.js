@@ -1,15 +1,16 @@
 import { useFormik } from "formik";
 import { useSpring, animated } from "react-spring";
-import Footer from "../componenets/footer";
-import resumeImage from "../images/hero_resume_home_page_rn.webp";
-import Buttons from "../componenets/buttons";
+import Footer from "../../componenets/footer";
+import resumeImage from "../../images/hero_resume_home_page_rn.webp";
+import Buttons from "../../componenets/buttons";
+
 import { useNavigate , useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import {
         AiFillDelete,
         AiOutlinePlusCircle,
 } from "react-icons/ai";
-import FormHeader from "../componenets/formHeader";
+import FormHeader from "../../componenets/formHeader";
 import { useState } from "react";
 const BuilderForm = () => {
            const { pathname } = useLocation();

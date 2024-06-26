@@ -1,23 +1,23 @@
 import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
-import Basic from '../pages/home';
-import Education from '../pages/education';
-import Skills from '../pages/skill';
-import Intro from '../pages/Intro';
-import BuilderForm from '../pages/builder';
+import Basic from '../pages/Home/home.js';
+import Education from '../pages/FormPages/education';
+import Skills from '../pages/FormPages/skill.js';
+import Intro from '../pages/TipsPages/Intro.js';
+import BuilderForm from '../pages/FormPages/builder.js';
 import NotFound from '../pages/NotFound';
-import Language from '../pages/lenguage';
-import { Experience } from '../pages/experience';
-import Sumrry from '../pages/sumrry';
-import EductionTips from '../pages/education-tips';
-import ExperienceTips from '../pages/experience-tips';
-import SkillsTips from '../pages/skills-tips';
-import SummaryTips from '../pages/summary-tips';
-import ReadyResume from '../pages/readyResume';
-import Login from '../pages/login';
-import SignUp from '../pages/SignUpP';
+import Language from '../pages/FormPages/lenguage.js';
+import { Experience } from '../pages/FormPages/experience.js';
+import Sumrry from '../pages/FormPages/sumrry';
+import EductionTips from '../pages/TipsPages/education-tips.js';
+import ExperienceTips from '../pages/TipsPages/experience-tips.js';
+import SkillsTips from '../pages/TipsPages/skills-tips.js';
+import SummaryTips from '../pages/TipsPages/summary-tips.js';
+import Login from '../pages/AuthPages/login.js';
+import SignUp from '../pages/AuthPages/SignUpP';
 import PDFunc from '../pages/PDF';
-import Deshbord from '../pages/dhesbord';
-import OTPverify from '../pages/otpverify';
+import Deshbord from '../pages/Dashbord/dhesbord.js';
+import OTPverify from '../pages/AuthPages/otpverify';
+import PDFSec from '../pages/secondPDF.js';
 let AppRouter = () => {
     let otpCheck = localStorage.getItem("email");
     let Sign = localStorage.getItem("Sign");
@@ -37,7 +37,7 @@ let AppRouter = () => {
                 <Route path='/education-tips' element={<EductionTips />}></Route>
                 <Route path='/skill-tips' element={<SkillsTips />}></Route>
                 <Route path='/summary-tips' element={<SummaryTips />}></Route>
-                <Route path='/ready' element={<PDFunc />}></Route>
+                <Route path='/ready' element={<PDFSec />}></Route>
                 <Route path='/login' element={Sign ? <Navigate to={"/deshbord"} /> : <Login />}></Route>
                 <Route path='/sign' element={Sign ? <Navigate to={"/deshbord"} /> : <SignUp />}></Route>
                 {<Route path='/otp' element={otpCheck ? <OTPverify /> : <Navigate to={"/sign"} />}></Route>}

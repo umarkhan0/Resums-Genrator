@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import ResponsiveAppBar from '../componenets/header';
+import ResponsiveAppBar from '../../componenets/header';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import roboImg from '../images/beab049afb9f4a654f71eb8dd8164e15-removebg-preview.png';
+import roboImg from '../../images/beab049afb9f4a654f71eb8dd8164e15-removebg-preview.png';
 import { jwtDecode } from 'jwt-decode';
-import Footer from '../componenets/footer';
+import Footer from '../../componenets/footer';
 import { NavLink , useNavigate } from 'react-router-dom';
 import axios from 'axios';
 const Login = () => {

@@ -1,8 +1,8 @@
-import resumeImage from "../images/hero_resume_home_page_rn.webp"
+import resumeImage from "../../images/hero_resume_home_page_rn.webp"
 import {useLocation, useNavigate } from "react-router-dom";
 import { useSpring, animated } from 'react-spring';
 import { useEffect } from "react";
-import FormHeader from "../componenets/formHeader";
+import FormHeader from "../../componenets/formHeader";
 import {CiApple} from "react-icons/ci";
 import {PiButterfly} from "react-icons/pi";
 import {RiAwardFill} from "react-icons/ri"

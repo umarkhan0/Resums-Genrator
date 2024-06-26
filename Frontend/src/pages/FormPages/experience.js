@@ -2,15 +2,14 @@ import React, { useState , useEffect} from 'react';
 import { useFormik } from 'formik';
 import Swal from 'sweetalert2';
 import { useSpring, animated } from 'react-spring';
-import Footer from '../componenets/footer';
-import resumeImage from '../images/hero_resume_home_page_rn.webp';
-import Buttons from '../componenets/buttons';
+import Footer from '../../componenets/footer';
+import resumeImage from '../../images/hero_resume_home_page_rn.webp';
+import Buttons from '../../componenets/buttons';
 import { useNavigate } from 'react-router-dom';
-import FormHeader from '../componenets/formHeader';
+import FormHeader from '../../componenets/formHeader';
 import { useLocation } from 'react-router-dom';
-import SingleSelectPlaceholder from '../componenets/dropdown';
+import SingleSelectPlaceholder from '../../componenets/dropdown';
 import { FormGroup, FormControlLabel, Checkbox } from '@mui/material';
-// import { useLocation } from "react-router-dom"
 
 const Experience = () => {
 

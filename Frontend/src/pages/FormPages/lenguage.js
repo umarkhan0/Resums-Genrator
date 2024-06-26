@@ -1,17 +1,17 @@
 import { useFormik } from "formik";
 import { useSpring, animated } from "react-spring";
-import Footer from "../componenets/footer";
-import resumeImage from "../images/hero_resume_home_page_rn.webp";
+import Footer from "../../componenets/footer";
+import resumeImage from "../../images/hero_resume_home_page_rn.webp";
 import { useNavigate, useLocation } from "react-router-dom";
-import BasicSelect from "../componenets/simpleDropDown";
+import BasicSelect from "../../componenets/simpleDropDown";
 import {
         AiOutlinePlusCircle,
         AiOutlineExclamationCircle,
         AiFillDelete
 } from "react-icons/ai";
-import FormHeader from "../componenets/formHeader";
+import FormHeader from "../../componenets/formHeader";
 import { useState , useEffect } from "react";
-import Buttons from "../componenets/buttons";
+import Buttons from "../../componenets/buttons";
 const Language = () => {
 
         useEffect(() => {

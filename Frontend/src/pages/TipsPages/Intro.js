@@ -1,7 +1,6 @@
-import LogoImage from "../images/logo-resume-nerd.svg";
-import sideImage from "../images/filetype-pdf.svg";
-import resumeImage from "../images/hero_resume_home_page_rn.webp"
-import { NavLink , useLocation } from "react-router-dom";
+import LogoImage from "../../images/logo-resume-nerd.svg";
+import resumeImage from "../../images/hero_resume_home_page_rn.webp"
+import { NavLink } from "react-router-dom";
 import { useSpring, animated } from 'react-spring';
 import { useEffect } from "react";
 const Intro = () => {

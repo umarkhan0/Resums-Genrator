@@ -1,15 +1,14 @@
-import LogoImage from "../images/logo-resume-nerd.svg";
-import sideImage from "../images/filetype-pdf.svg";
-import resumeImage from "../images/hero_resume_home_page_rn.webp"
+import LogoImage from "../../images/logo-resume-nerd.svg";
+import sideImage from "../../images/filetype-pdf.svg";
+import resumeImage from "../../images/hero_resume_home_page_rn.webp"
 import {  useLocation, useNavigate } from "react-router-dom";
 import { useSpring, animated } from 'react-spring';
-import { FaAward , FaHandshake } from "react-icons/fa";
-import { AiOutlineUnorderedList } from "react-icons/ai";
+import {BsRecycle , BsTools} from "react-icons/bs"
+import { FaAward } from "react-icons/fa";
+import { AiOutlineUnorderedList , AiOutlinePaperClip } from "react-icons/ai";
 import { useEffect } from "react";
-import FormHeader from "../componenets/formHeader";
-import { BsPencil , BsFillPenFill } from "react-icons/bs";
-import {HiOutlineLightBulb} from "react-icons/hi"
-const SummaryTips = () => {
+import FormHeader from "../../componenets/formHeader";
+const SkillsTips = () => {
 let navigate = useNavigate();
 const location = useLocation();
 const contectUs = location.state.data;
@@ -30,35 +29,35 @@ const contectUs = location.state.data;
                     <div className=" w-full flex justify-center">
                         <div className=" w-3/4">
                             <p className=" text-[#a0a5dd] font-bold text-sm">UP NEXT:</p>
-                            <h1 className=" text-[36px] mb-12 font-[libre] md:leading-3 font-bold">Summary</h1>
+                            <h1 className=" text-[36px] mb-12 font-[libre] md:leading-3 font-bold">Skills</h1>
                             <div className="flex mt-2 items-center">
-                                <div className="bg-[#f1e4f3] absolute flex justify-center items-center text-[#c176ce] rounded-sm w-[36px] h-9 text-center font-bold">
-                                    <BsFillPenFill />
+                                <div className="text-[#ff9061] absolute flex justify-center items-center bg-[#f9ebe3] rounded-sm w-[36px] h-9 text-center font-bold">
+                                    <AiOutlinePaperClip />
                                 </div>
                                 <span className="pl-12 text-[17px] leading-[20px] font-normal text-left">
-                                    Gather information about your accomplishments at previous jobs to fill in this section.
+                                Keep your list of skills to around 8 if possible. Also, if you can, use skills listed in the job posting you are applying to.
                                 </span>
                             </div>
                             <div className="flex mt-4 items-center">
-                                <div className="text-[#6bb8a0] absolute flex justify-center items-center bg-[#d6f8ee] rounded-sm w-[36px] h-9 text-center font-bold">
-                                    <HiOutlineLightBulb />
+                                <div className="text-[#eeaa2e] absolute flex justify-center items-center bg-[#feefd1] rounded-sm w-[36px] h-9 text-center font-bold">
+                                    <BsRecycle />
                                 </div>
                                 <span className="pl-12 text-[17px] leading-[20px] font-normal text-left">
-                                    Need help to fill out your work experience? Simply click to add pre-written examples unique to your industry.
+                                Soft skills are the most transferable from one role to the other as they are more universal.
                                 </span>
                             </div>
                             <div className="flex mt-4 items-center">
-                                <div className="bg-[#deefff] absolute flex justify-center items-center text-[#55a1e8] rounded-sm w-[36px] h-9 text-center font-bold">
-                                    <FaHandshake />
+                                <div className="text-[#55a1e8] absolute flex justify-center items-center bg-[#deefff] rounded-sm w-[36px] h-9 text-center font-bold">
+                                    <BsTools />
                                 </div>
                                 <span className="pl-12 text-[17px] leading-[20px] font-normal text-left">
-                                    Be sure to include keywords from the job posting. This will make your resume more attractive to recruiters.
+                                Hard skills, on the other hand, are technical skills. They relate to specific roles and responsibilities.
                                 </span>
                             </div>
 
                             <div className="flex justify-center items-center cursor-pointer mt-12 mb-4">
                                 <p onClick={() =>{
-                        navigate("/summary", { state: { data: contectUs} });
+                        navigate("/skills", { state: { data: contectUs} });
                                 }} className=" no-underline bg-[#008d5f] border-none active:opacity-5 text-white w-[70%] py-2 rounded-sm font-bold text-center">
                                     CONTINUE
                                 </p>
@@ -82,4 +81,4 @@ const contectUs = location.state.data;
         </animated.div>
     );
 };
-export default SummaryTips;
+export default SkillsTips;
