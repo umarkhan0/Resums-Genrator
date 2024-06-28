@@ -1,8 +1,6 @@
 import React from 'react';
 import { Typography, Button, Grid, Card, CardContent, CardMedia } from '@mui/material';
-
 const CardDesh = (props) => {
-     console.log(props);
      let {image , title , discription , button} = props;
     return (
         <Card sx={{ display: 'flex', padding: 2, borderRadius: '10px', boxShadow: 3 }}>

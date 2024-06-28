@@ -14,10 +14,11 @@ import SkillsTips from '../pages/TipsPages/skills-tips.js';
 import SummaryTips from '../pages/TipsPages/summary-tips.js';
 import Login from '../pages/AuthPages/login.js';
 import SignUp from '../pages/AuthPages/SignUpP';
-import PDFunc from '../pages/PDF';
 import Deshbord from '../pages/Dashbord/dhesbord.js';
 import OTPverify from '../pages/AuthPages/otpverify';
 import PDFSec from '../pages/secondPDF.js';
+import ChangePassword from "../pages/AuthPages/changePassword.js";
+import Contact from '../pages/Contect/contect.js';
 let AppRouter = () => {
     let otpCheck = localStorage.getItem("email");
     let Sign = localStorage.getItem("Sign");
@@ -26,6 +27,9 @@ let AppRouter = () => {
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Basic />}></Route>
+                <Route path='/contect' element={<Contact />}></Route>
+                <Route path='/changepassword' element={<ChangePassword />}></Route>
+
                 <Route path='/intro' element={<Intro />}></Route>
                 <Route path='/builder' element={<BuilderForm />}></Route>
                 <Route path='/experience' element={<Experience />}></Route>
@@ -42,7 +46,7 @@ let AppRouter = () => {
                 <Route path='/sign' element={Sign ? <Navigate to={"/deshbord"} /> : <SignUp />}></Route>
                 {<Route path='/otp' element={otpCheck ? <OTPverify /> : <Navigate to={"/sign"} />}></Route>}
                 <Route path='/skills' element={<Skills />}></Route>
-                <Route path='/deshbord' element={<Deshbord />}></Route>
+                <Route path='/deshbord' element={!Sign ? <Navigate to={"/login"} /> :<Deshbord />}></Route>
 
 
 
