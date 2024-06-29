@@ -1,6 +1,3 @@
-# Let's create a README.md file with the updated project details in one go.
-
-readme_content_react = """
 # Resums-Genrator
 
 ## Overview
@@ -100,8 +97,4 @@ This project is licensed under the [MIT License](LICENSE).
 ## Contact
 
 If you have any questions or need help, feel free to email me at `umaraamir959@gmail.com`.
-"""
 
-# Writing the content to a README.md file for the React project
-with open("/mnt/data/README.md", "w") as file:
-    file.write(readme_content_react)
