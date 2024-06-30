@@ -16,4 +16,4 @@ const Buttons = () =>{
                   </div>
     )
 }
-export default Buttons
+export default Buttons;

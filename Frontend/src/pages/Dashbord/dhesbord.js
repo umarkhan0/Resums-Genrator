@@ -5,13 +5,14 @@ import CardDesh from "./Componenet/card";
 import resumeImage from "./images/Resume-Template-Resume-Nerd-Accord.webp";
 import robo1Image from "./images/download (1).png";
 import roboo2Image from "./images/download.png"
+import { NavLink, useNavigate } from "react-router-dom";
 const Deshbord = () => {
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const [numOneCheckBox, setNumOneCheckBox] = useState(true);
     const [numTwoCheckBox, setNumTwoCheckBox] = useState(true);
     const [removeCheckBox, setRemoveCheckBox] = useState(false);
     const [lengthCheckBox, setLengthCheckBox] = useState(2);
-
+    let navigate = useNavigate()
     const numOneCheck = () => {
         const newState = !numOneCheckBox;
         setNumOneCheckBox(newState);
@@ -61,7 +62,7 @@ const Deshbord = () => {
                                 </tr>
                                 <tr>
                                     <th className="py-2 font-bold text-[#333] font-[raleway]">Password:</th>
-                                    <td className="py-2 text-blue-500"><a href="#">Change Password</a></td>
+                                    <td className="py-2 text-blue-500"><NavLink to={"/changepassword"}>Change Password</NavLink></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -102,46 +103,46 @@ const Deshbord = () => {
                         </form>
                     </div>
 
-                    <button className="bg-green-500 text-white py-2 px-4 rounded-lg w-full mt-4">Return to Dashboard</button>
+                    <button onClick={() => navigate("/")} className="bg-green-500 text-white py-2 px-4 rounded-lg w-full mt-4">Return to Home</button>
                 </div>
 
-               <div  className="sm:w-[40%] mb-4 flex justify-around flex-col w-[90%] ">
-<div className=" mb-3 sm:mb-0">
-                              <CardDesh
-    component="img"
-    sx={{ width: '50%' }}
-    image={resumeImage} // Place your image in the public folder
-    alt="Resume"
-    title="Resume Score"
-    discription="Get your resume scored and learn how to improve your resume and impress employers."
-    button="IMPROVE RESUME SCORE"
-/>
-</div>
-<div className=" mb-3 sm:mb-0">
-<CardDesh
-    component="img"
-    title="Cover Letter Builder"
-    sx={{ width: '50%' }}
-    image={robo1Image} // Place your image in the public folder
-    alt="Resume"
-    button="CREATE COVER LETTER"
+                <div className="sm:w-[40%] mb-4 flex justify-around flex-col w-[90%] ">
+                    <div className=" mb-3 sm:mb-0">
+                        <CardDesh
+                            component="img"
+                            sx={{ width: '50%' }}
+                            image={resumeImage} // Place your image in the public folder
+                            alt="Resume"
+                            title="Resume Score"
+                            discription="Get your resume scored and learn how to improve your resume and impress employers."
+                            button="IMPROVE RESUME SCORE"
+                        />
+                    </div>
+                    <div className=" mb-3 sm:mb-0">
+                        <CardDesh
+                            component="img"
+                            title="Cover Letter Builder"
+                            sx={{ width: '50%' }}
+                            image={robo1Image} // Place your image in the public folder
+                            alt="Resume"
+                            button="CREATE COVER LETTER"
 
-    discription="Create an eye-catching cover letter to send with your resume."
-/> 
-</div>
-<div>
-<CardDesh
-    component="img"
-    title="Job Search & Job Match"
-    sx={{ width: '50%' }}
-    image={roboo2Image} // Place your image in the public folder
-    alt="Resume"
-    button="SEARCH FOR JOBS"
+                            discription="Create an eye-catching cover letter to send with your resume."
+                        />
+                    </div>
+                    <div>
+                        <CardDesh
+                            component="img"
+                            title="Job Search & Job Match"
+                            sx={{ width: '50%' }}
+                            image={roboo2Image} // Place your image in the public folder
+                            alt="Resume"
+                            button="SEARCH FOR JOBS"
 
-    discription="Search for jobs and see which jobs best match your resume."
-/>
-</div>
-               </div>
+                            discription="Search for jobs and see which jobs best match your resume."
+                        />
+                    </div>
+                </div>
             </div>
         </>
     );
