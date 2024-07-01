@@ -8,6 +8,9 @@ import { useEffect } from "react";
 import resumeImageOne from "./images/Software-Engineer-Resume-Example.png";
 import resumeImageTwo from "./images/Data-Analyst-Resume-Example (1).png";
 import resumeImageThree from "./images/Administrative-Assistant-Resume-Example.png";
+import GreatResume from "./images/WP-Illustrations-hiring31.webp";
+import Faq from "./faq";
+import Footer from "../../componenets/homePageFooter";
 const Basic = () => {
 
   useEffect(() => {
@@ -19,9 +22,9 @@ const Basic = () => {
   });
 
   return (
-    <animated.div style={animationProps} className=" bg-[#f4faff] fixed w-full h-full overflow-auto">
+    <animated.div style={animationProps} className="  fixed w-full h-full overflow-auto">
       <ResponsiveAppBar positionS={"fixed"} />
-      <div className=" flex justify-center mt-3 flex-wrap items-center">
+      <div className=" bg-[#f4faff] flex justify-center mt-3 flex-wrap items-center">
         <div className="  lg:w-2/5 sm:w-full">
           <div className="media-change">
             <p className=" text-heading sm:text-5xl leading-8 text-[30px] font-extrabold  font-serif text-[#333]">
@@ -138,7 +141,7 @@ const Basic = () => {
 
       <section className=" bg-[#fff]">
         <h3 className=" font-[Libre] text-[35px] font-bold pt-9 pl-9">Resume</h3>
-        <p className=" pl-9 pr-4 text-[18px] font-[Raleway] text-[#333]">In the modern world, the right resume is everything. Companies use applicant tracking systems (ATS) to filter good resumes from those that don’t suit the job description. So, you must have the best resume that showcases your skills and work experience. This article will break down what a resume is, why you need one and how you can create a resume that catches a hiring manager’s attention.</p>
+        <p className=" pl-9 pr-4 text-[18px] font-[Raleway] text-[#333] text-justify">In the modern world, the right resume is everything. Companies use applicant tracking systems (ATS) to filter good resumes from those that don’t suit the job description. So, you must have the best resume that showcases your skills and work experience. This article will break down what a resume is, why you need one and how you can create a resume that catches a hiring manager’s attention.</p>
         <div className=" flex justify-around flex-wrap sm:flex-nowrap">
           <div className="  m-4 sm:m-0 sm:w-[330px]">
             <p className=" text-[#00b5c3] uppercase text-[16px] leading-4 font-bold">DATA ANALYST RESUME</p>
@@ -172,16 +175,39 @@ const Basic = () => {
       </section>
       <section className=" bg-[#fff]">
         <h3 className=" font-[Libre] text-[35px] font-bold pt-9 sm:pl-9 pl-4">What Is a Resume?</h3>
-        <p className=" sm:pl-9 pl-4 pr-4 text-[18px] font-[inherit] text-[#333]">A resume is similar to a curriculum vitae (CV) in many ways but is significantly shorter. A CV is a comprehensive document listing a job seeker’s academic and professional history. Meanwhile, a resume is a single-page snapshot of the skills and experiences that make a job seeker right for a certain job title. Here are three main resume formats that you can choose:</p>
+        <p className=" sm:pl-9 pl-4 pr-4 text-[18px] font-[inherit] text-[#333] text-justify">A resume is similar to a curriculum vitae (CV) in many ways but is significantly shorter. A CV is a comprehensive document listing a job seeker’s academic and professional history. Meanwhile, a resume is a single-page snapshot of the skills and experiences that make a job seeker right for a certain job title. Here are three main resume formats that you can choose:</p>
         <p className="font-[Libre] text-[20px] font-[800] pt-2 sm:pl-9 pl-4 text-[#00b5c3]">CHRONOLOGICAL RESUME</p>
-        <p className=" sm:pl-9 pl-4 pr-4 text-[18px] font-[inherit] text-[#333]">A chronological resume format, or reverse-chronological resume format, focuses on the work history of a job seeker and is best for people who have a lot of professional experience.
+        <p className=" sm:pl-9 pl-4 pr-4 text-[18px] font-[inherit] text-[#333] text-justify">A chronological resume format, or reverse-chronological resume format, focuses on the work history of a job seeker and is best for people who have a lot of professional experience.
         </p>
         <p className="font-[Libre] text-[20px] font-[800] pt-2 sm:pl-9 pl-4 text-[#00b5c3]">FUNCTIONAL RESUME</p>
-        <p className=" sm:pl-9 pl-4 pr-4 text-[18px] font-[inherit] text-[#333]">A functional resume format focuses on a job seeker's skill set and is competency-based. This resume format is best for those who have limited or patchy work experience.</p>
+        <p className=" sm:pl-9 pl-4 pr-4 text-[18px] font-[inherit] text-[#333] text-justify">A functional resume format focuses on a job seeker's skill set and is competency-based. This resume format is best for those who have limited or patchy work experience.</p>
         <p className="font-[Libre] text-[20px] font-[800] pt-2 sm:pl-9 pl-4 text-[#00b5c3]">COMBINATION RESUME</p>
-        <p className=" sm:pl-9 pl-4 pr-4 text-[18px] font-[inherit] text-[#333]">A combination resume format balances work history and skills to provide a broad overview of a job seeker's competencies. This is a great option for those with limited work history and is generally received more positively by hiring managers.</p>
-        <p className=" sm:pl-9 pl-4 pr-4 pt-4 text-[18px] font-[inherit] text-[#333]">Whichever resume format you choose, the ResumeNerd resume builder has a range of free resume templates you can select.</p>
+        <p className=" sm:pl-9 pl-4 pr-4 text-[18px] font-[inherit] text-[#333] text-justify">A combination resume format balances work history and skills to provide a broad overview of a job seeker's competencies. This is a great option for those with limited work history and is generally received more positively by hiring managers.</p>
+        <p className=" sm:pl-9 pl-4 pb-4 pr-4 pt-4 text-[18px] font-[inherit] text-[#333] text-justify">Whichever resume format you choose, the ResumeNerd resume builder has a range of free resume templates you can select.</p>
       </section>
+      <section className=" bg-[#fff]">
+        <h3 className=" font-[Libre] text-[35px] text-center sm:text-left font-bold pt-9 sm:pl-9 pl-4">Why Is a Great Resume Important?</h3>
+        <div className=" flex justify-around items-center flex-wrap">
+          <div className="p-2">
+            <img src={GreatResume} alt="" />
+          </div>
+          <div className=" lg:w-[60%] w-full p-3">
+            <p className=" fon-[16px] text-justify">A great resume will open doors for you. If you want to level up your career and land your dream job, you need to tailor it carefully. A good resume will:</p>
+            <ul className="list-disc">
+              <li className=" text-justify font-[inherit]">Be ATS-friendly. This means it will have a better chance of making it to a hiring manager.</li>
+              <li className=" text-justify font-[inherit]">Help you to stand out from other applicants and impress a recruiter.</li>
+              <li className=" text-justify font-[inherit]">Increase your chance of getting a job interview. </li>
+            </ul>
+            <p className=" text-justify font-[inherit]">In short, a great resume is one of the most powerful tools you can add to your arsenal as a job seeker. If you optimize your resume to a specific job description and write a corresponding cover letter, your chance of landing a new job title will be much higher.</p>
+          </div>
+
+        </div>
+      </section>
+      <section className=" bg-[#fff] pt-10">
+        <h3 className=" font-[Libre] text-[35px] text-center sm:text-left font-bold pb-8 pt-10 sm:px-9 px-3">Frequently Asked Questions About Our Resume Builder</h3>
+        <Faq />
+      </section>
+      <Footer />
     </animated.div>
   );
 };

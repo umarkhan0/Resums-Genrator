@@ -4,7 +4,7 @@ import Education from '../pages/FormPages/education';
 import Skills from '../pages/FormPages/skill.js';
 import Intro from '../pages/TipsPages/Intro.js';
 import BuilderForm from '../pages/FormPages/builder.js';
-import NotFound from '../pages/NotFound';
+import NotFound from '../pages/NotFound/NotFound.js';
 import Language from '../pages/FormPages/lenguage.js';
 import { Experience } from '../pages/FormPages/experience.js';
 import Sumrry from '../pages/FormPages/sumrry';
@@ -29,7 +29,6 @@ let AppRouter = () => {
                 <Route path='/' element={<Basic />}></Route>
                 <Route path='/contect' element={<Contact />}></Route>
                 <Route path='/changepassword' element={<ChangePassword />}></Route>
-
                 <Route path='/intro' element={<Intro />}></Route>
                 <Route path='/builder' element={<BuilderForm />}></Route>
                 <Route path='/experience' element={<Experience />}></Route>
