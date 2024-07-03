@@ -1,0 +1,20 @@
+/* styles.css */
+.bg-image-desktop {
+    background-image: url('./images/error-page-desktop-compress-bg.png');
+}
+
+.bg-image-mobile {
+    background-image: url('./images/error-page-mobile-bg.png');
+}
+
+@media (min-width: 768px) {
+    .bg-image {
+        background-image: url('./images/error-page-desktop-compress-bg.png');
+    }
+}
+
+@media (max-width: 767px) {
+    .bg-image {
+        background-image: url('./images/error-page-mobile-bg.png');
+    }
+}
