@@ -4,6 +4,7 @@ import User from "../models/user.js";
 const router = express.Router();
 router.get( "/" , verifyToken , async (request , response) => {
 const users = await User.find({});
+console.log("getting....");
 response.status(200).send({user: users})
 });
 export default router
